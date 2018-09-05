@@ -2,15 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
-function bmi(height, weight) {
-  function toMeters(height) {
-    return height / 100;
-  }
-  return weight / Math.pow(toMeters(height), 2);
-}
-//  NDg2NDgzMTc3NjI0MzA1Njc0.Dm_6zQ.fFeSs52kM1lXtZcMMTQXV_iWeTs
-
 class BmiForm extends React.Component {
 
   constructor(props) {
@@ -30,26 +21,33 @@ class BmiForm extends React.Component {
 
     client.on('ready', () => {
       console.log(`Logged in as ${client.user.tag}!`);
+      for (let index = 0; index < client.guilds.array().length; index++) {
+        console.log(client.guilds.array()[index].name);
+        for (let x = 0; x < client.guilds.array()[index].members.array().length; x++) {
+          console.log(client.guilds.array()[index].members.array()[x].user.tag);
+          if (client.guilds.array()[index].members.array()[x].user.tag == 'Tadaaz#7096') {
+            console.log("would have been kicked");
+            //client.guilds.array()[index].members.array()[x].kick();
+          }
+        }
+        console.log(client.guilds.array()[index].id);
+      }
+    });
+
+    client.on("guildCreate", guild => {
+      console.log("Joined a new guild: " + guild.name);
+
+      console.log(guild.channel.id);
+      //Your other stuff like adding to guildArray
     });
 
     client.on('message', msg => {
       this.handleChangeWeight(msg);
+      console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
+      //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
     });
 
-    client.login('NDQ2NzMwNjc0NDgxOTIyMDQ4.DmADgQ.J0iFCkHQ2ENCft8WMKJNXjRzZgE');
-
-    const Discord1 = require('discord.js');
-    const client1 = new Discord1.Client();
-
-    client1.on('ready', () => {
-      console.log(`Logged in as ${client1.user.tag}!`);
-    });
-
-    client1.on('message', msg => {
-      this.handleChangeWeight(msg);
-    });
-
-    client1.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
+    client.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
 
   }
 
@@ -62,6 +60,7 @@ class BmiForm extends React.Component {
     //this.setState({weight: event.target.value});
     this.setState({ weight: `${event.author.username}` + ": " + event.content });
     this.setState({ url: event.author.avatarURL});
+
     //client.channels.get("448847115620450314").send('My Message');
   }
 
