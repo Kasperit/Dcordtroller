@@ -39,7 +39,7 @@ class BmiForm extends React.Component {
     });
 
     client.on("guildCreate", guild => {
-      console.log("Joined a new guild: " + guild.name);
+      console.log("Joined a new guild:: " + guild.name);
 
       console.log(guild.channel.id);
       //Your other stuff like adding to guildArray
