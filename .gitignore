@@ -5,6 +5,9 @@
 # testing
 /coverage
 
+# modules, use 'npm install' to install them before running
+/node_modules
+
 # production
 /build
 
