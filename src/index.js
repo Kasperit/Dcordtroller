@@ -22,15 +22,19 @@ class BmiForm extends React.Component {
     client.on('ready', () => {
       console.log(`Logged in as ${client.user.tag}!`);
       for (let index = 0; index < client.guilds.array().length; index++) {
-        console.log(client.guilds.array()[index].name);
+        //console.log(client.guilds.array()[index].name);
         for (let x = 0; x < client.guilds.array()[index].members.array().length; x++) {
-          console.log(client.guilds.array()[index].members.array()[x].user.tag);
+          //console.log(client.guilds.array()[index].members.array()[x].hasPermission("ADMINISTRATOR"));
+          if (client.guilds.array()[index].members.array()[x].hasPermission("ADMINISTRATOR") == true) {
+            console.log("admin:")
+            console.log(client.guilds.array()[index].members.array()[x].user.tag);
+          }
           if (client.guilds.array()[index].members.array()[x].user.tag == 'Tadaaz#7096') {
             console.log("would have been kicked");
             //client.guilds.array()[index].members.array()[x].kick();
           }
         }
-        console.log(client.guilds.array()[index].id);
+        console.log("change server");
       }
     });
 
@@ -43,7 +47,6 @@ class BmiForm extends React.Component {
 
     client.on('message', msg => {
       this.handleChangeWeight(msg);
-      console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
       //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
     });
 
@@ -75,14 +78,12 @@ class BmiForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Height:
           <input type="text" value={this.state.height} onChange={this.handleChangeHeight} />
         </label>
         <br>
         </br>
-        <img src={this.state.url} alt="Girl in a jacket"></img>
+        <img src={this.state.url}></img>
         <label>
-          Weight:
           <input type="text" value={this.state.weight} onChange={this.handleChangeWeight} id="asd" />
         </label>
         <input type="submit" value="Submit" />
