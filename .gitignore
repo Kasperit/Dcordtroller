@@ -12,6 +12,7 @@
 /build
 
 # misc
+.workspace.xml
 .DS_Store
 .env.local
 .env.development.local
