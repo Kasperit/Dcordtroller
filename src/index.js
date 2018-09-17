@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import ListUserContainers from './client/containers/ListUserContainers'
 
 class BmiForm extends React.Component {
 
@@ -94,7 +95,7 @@ class BmiForm extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <BmiForm />,
+  <ListUserContainers />,
   document.getElementById('root')
 );
 
