@@ -15,13 +15,23 @@ class ListUserContainers extends Component{
 
         client.on('ready', () => {
             console.log(`Logged in as ${client.user.tag}!`);
-            this.setState({
-                listOfGuilds: client.guilds.array()
-            });
-            for (let index = 0; index < client.guilds.array().length; index++) {
-                console.log(client.guilds.array()[index].name);
-                //console.log(client.guilds.array()[index].id);
+            let listOfGuilds = [];
+            const listOfGuildsFormat = client.guilds.array();
+            for(let i = 0; i< listOfGuildsFormat.length; i++) {
+                let listOfMembers = [];
+                for (let x = 0; x < listOfGuildsFormat[i].members.array().length; x++) {
+                    listOfMembers.push(listOfGuildsFormat[i].members.array()[x])
+                }
+                listOfGuilds.push(
+                    {
+                        server: listOfGuildsFormat[i].name,
+                        users: listOfMembers
+                    }
+                )
             }
+            this.setState({
+                listOfGuilds: listOfGuilds
+            });
         });
 
         client.on("guildCreate", guild => {
@@ -48,16 +58,35 @@ class ListUserContainers extends Component{
         //client.channels.get("448847115620450314").send('My Message');
     }
 
+    handleKickUser = (user,server) => {
+        let listOfGuilds = [...this.state.listOfGuilds];
+        for(let i = 0; i< listOfGuilds.length; i++) {
+            if(listOfGuilds[i].server === server) {
+                let userInSingleGuild = [...listOfGuilds[i].users]
+                for (let x = 0; x < userInSingleGuild.length; x++) {
+                    if (userInSingleGuild[x].user.tag === user) {
+                        userInSingleGuild.splice(x, 1);
+                    }
+                }
+                listOfGuilds[i].users = [...userInSingleGuild]
+            }
+        }
+        this.setState({
+            listOfGuilds:listOfGuilds
+        });
+        console.log(`Kick ${user} in server ${server}`)
+    };
+
 
     render(){
         const {listOfGuilds} = this.state;
-        console.log(listOfGuilds);
         if(listOfGuilds){
             return (
                 <div>
                     <h1>List Of User</h1>
                     <ListUser
                         listOfGuilds = {listOfGuilds}
+                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}
                     />
                 </div>
             )

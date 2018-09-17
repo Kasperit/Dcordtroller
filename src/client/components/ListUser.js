@@ -6,17 +6,17 @@ const ListUser = (props) => {
     let listOfMembersInServer = [];
     for(let i = 0; i< listOfGuilds.length; i++){
         let listOfMembers = [];
-        for (let x = 0; x < listOfGuilds[i].members.array().length; x++) {
+        for (let x = 0; x < listOfGuilds[i].users.length; x++) {
             listOfMembers.push(
-                <li key={`${listOfGuilds[i].members.array()[x].user.tag}-${listOfGuilds[i].name}`}>
-                    {listOfGuilds[i].members.array()[x].user.tag}
-                    <button onClick={() => console.log(`Kick ${listOfGuilds[i].members.array()[x].user.tag}`)}>Kick</button>
+                <li key={`${listOfGuilds[i].users[x].user.tag}-${listOfGuilds[i].server}`}>
+                    {listOfGuilds[i].users[x].user.tag}
+                    <button onClick={() => props.handleKickUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Kick</button>
                 </li>
             )
         }
         listOfMembersInServer.push(
-            <div key={listOfGuilds[i].name}>
-                <h3>{listOfGuilds[i].name}</h3>
+            <div key={listOfGuilds[i].server}>
+                <h3>{listOfGuilds[i].server}</h3>
                 <ul>
                     {listOfMembers}
                 </ul>
