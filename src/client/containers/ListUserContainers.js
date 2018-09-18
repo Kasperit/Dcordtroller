@@ -65,7 +65,10 @@ class ListUserContainers extends Component{
                 let userInSingleGuild = [...listOfGuilds[i].users]
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].user.tag === user) {
-                        userInSingleGuild.splice(x, 1);
+                    	// This kicks the user from the discord server    
+                     	//userInSingleGuild[x].kick();     TODO: Lets remove this from comments once we are done
+
+                        userInSingleGuild.splice(x, 1);                    
                     }
                 }
                 listOfGuilds[i].users = [...userInSingleGuild]
