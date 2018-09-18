@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ListUserContainers from './client/containers/ListUserContainers'
+import ListUserContainers from './client/containers/ListUser/ListUserContainers'
 
 class BmiForm extends React.Component {
 

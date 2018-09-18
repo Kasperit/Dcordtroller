@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import ListUser from '../components/ListUser'
+import ListUser from '../../components/ListUser/ListUser'
 
 class ListUserContainers extends Component{
     constructor(props){
