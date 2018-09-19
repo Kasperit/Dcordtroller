@@ -15,7 +15,7 @@ const ListUser = (props) => {
                     <button onClick={() => props.handleBanUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Ban</button>
                 </li>
             )
-            
+
     if(server){
         for(let i = 0; i< listOfGuilds.length; i++){
             if(listOfGuilds[i].server === server){
@@ -42,7 +42,8 @@ const ListUser = (props) => {
             </div>
         )
     }
-
+        }
+    }
 };
 
 export default ListUser;
