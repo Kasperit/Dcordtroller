@@ -1,13 +1,20 @@
-import React from "react";
+import React,{Fragment} from "react";
+import NavigationItems from './NavigationItems/NavigationItems'
+import {NavLink} from 'react-router-dom'
+import './Header.css'
 
-
-const HeaderBar = (props) => {
+const headerBar = (props) => {
     return (
         <div className={'header'}>
-            <h1 className={'logo'}>Dcordtroller</h1>
+            <div className='logo'>
+                <NavLink to="/">
+                    <h2>Dcordtroller</h2>
+                </NavLink>
+            </div>
+            <NavigationItems/>
         </div>
     )
-}
+};
 
 
-export default HeaderBar;
+export default headerBar;

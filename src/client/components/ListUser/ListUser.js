@@ -1,48 +1,45 @@
 import React from 'react'
-
+import {List,Card,Button} from 'antd'
 
 const ListUser = (props) => {
     const {listOfGuilds,server} = props;
     let listOfMembersInServer = [];
-
-    for(let i = 0; i< listOfGuilds.length; i++){
-        let listOfMembers = [];
-        for (let x = 0; x < listOfGuilds[i].users.length; x++) {
-            listOfMembers.push(
-                <li key={`${listOfGuilds[i].users[x].user.tag}-${listOfGuilds[i].server}`}>
-                    {listOfGuilds[i].users[x].user.tag}
-                    <button onClick={() => props.handleKickUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Kick</button>
-                    <button onClick={() => props.handleBanUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Ban</button>
-                </li>
-            )
-
     if(server){
         for(let i = 0; i< listOfGuilds.length; i++){
             if(listOfGuilds[i].server === server){
                 for (let x = 0; x < listOfGuilds[i].users.length; x++) {
-                    listOfMembersInServer.push(
-                        <li key={`${listOfGuilds[i].users[x].user.tag}-${listOfGuilds[i].server}`}>
-                            {listOfGuilds[i].users[x].user.tag}
-                            <button onClick={() => props.handleKickUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Kick</button>
-                            <button onClick={() => props.handleBanUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Ban</button>
-                        </li>
-                    )
+                    listOfMembersInServer.push(listOfGuilds[i].users[x].user.tag)
                 }
             }
-
         }
         return (
-            <ul>
-                {listOfMembersInServer}
-            </ul>
+            <Card
+                title="Users"
+                bodyStyle={{height:'400px',overflowY:'scroll'}}
+            >
+                <List
+                    bordered
+                    dataSource={listOfMembersInServer}
+                    renderItem={item => (
+                        <List.Item
+                            actions={
+                                [
+                                    <Button onClick={() => props.handleKickUser(item,server)}>Kick</Button>,
+                                    <Button onClick={() => props.handleBanUser(item,server)}>Ban</Button>
+                                ]
+                            }
+                        >
+                            {item}
+                        </List.Item>
+                    )}
+                />
+            </Card>
         )
     } else {
         return(
             <div>
             </div>
         )
-    }
-        }
     }
 };
 

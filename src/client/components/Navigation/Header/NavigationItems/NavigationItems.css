@@ -1,0 +1,24 @@
+.NavigationItems {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.content-navigation {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.content-navigation-dropdown{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

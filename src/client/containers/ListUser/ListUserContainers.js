@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import ListUser from '../../components/ListUser/ListUser'
 import ListServer from '../../components/ListServer/ListServer'
+import {Row,Col,Spin,Icon} from 'antd'
+import {Route} from 'react-router-dom'
 class ListUserContainers extends Component{
     constructor(props){
         super(props);
@@ -102,33 +104,48 @@ class ListUserContainers extends Component{
 
 
     render(){
+        const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
         const {listOfGuilds} = this.state;
         if(listOfGuilds){
             return (
-                <div>
-                    <h1>List Of User</h1>
-                    <ListServer
-                        listOfGuilds = {listOfGuilds}
-                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}
-                        handleBanUser = {(user,server) => this.handleBanUser(user,server)}
-                        chooseServer = {(server) => this.setState({
-                            server:server
-                        })}
-                    />
-                    <ListUser
-                        listOfGuilds = {listOfGuilds}
-                        server = {this.state.server}
-                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}                   
-                        handleBanUser = {(user,server) => this.handleBanUser(user,server)}
-                    />
-                </div>
+                <Route path="/user-list" exact render={() =>
+                    <div>
+                        <h1>List Of User</h1>
+                        <Row gutter={16}>
+                            <Col span={16}>
+                                <Row gutter={16}>
+                                    <Col span={12}>
+                                        <ListServer
+                                            listOfGuilds={listOfGuilds}
+                                            handleKickUser={(user, server) => this.handleKickUser(user, server)}
+                                            handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                                            chooseServer={(server) => this.setState({
+                                                server: server
+                                            })}
+                                        />
+                                    </Col>
+                                    <Col span={12}>
+                                        <ListUser
+                                            listOfGuilds={listOfGuilds}
+                                            server={this.state.server}
+                                            handleKickUser={(user, server) => this.handleKickUser(user, server)}
+                                            handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </div>
+                }/>
             )
         } else {
             return (
-                <div>
-                    <h1>List Of User</h1>
-                    <p>Data is fetching....</p>
-                </div>
+                <Route path="/user-list" exact render={() =>
+                    <div>
+                        <h1>List Of User</h1>
+                        <Spin indicator={iconLoading}/>
+                    </div>
+                }/>
             )
         }
 
