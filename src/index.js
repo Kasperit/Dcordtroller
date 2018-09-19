@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ListUserContainers from './client/containers/ListUser/ListUserContainers'
+import App from './App'
 
 class BmiForm extends React.Component {
 
@@ -95,7 +95,7 @@ class BmiForm extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <ListUserContainers />,
+  <App />,
   document.getElementById('root')
 );
 
