@@ -118,7 +118,9 @@ class ListUserContainers extends Component{
                     <ListUser
                         listOfGuilds = {listOfGuilds}
                         server = {this.state.server}
-                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}                    />
+                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}                   
+                        handleBanUser = {(user,server) => this.handleBanUser(user,server)}
+                    />
                 </div>
             )
         } else {

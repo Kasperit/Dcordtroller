@@ -24,6 +24,7 @@ const ListUser = (props) => {
                         <li key={`${listOfGuilds[i].users[x].user.tag}-${listOfGuilds[i].server}`}>
                             {listOfGuilds[i].users[x].user.tag}
                             <button onClick={() => props.handleKickUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Kick</button>
+                            <button onClick={() => props.handleBanUser(listOfGuilds[i].users[x].user.tag,listOfGuilds[i].server)}>Ban</button>
                         </li>
                     )
                 }
@@ -38,7 +39,6 @@ const ListUser = (props) => {
     } else {
         return(
             <div>
-
             </div>
         )
     }
