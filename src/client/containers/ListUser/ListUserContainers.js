@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import ListUser from '../../components/ListUser/ListUser'
-
+import ListServer from '../../components/ListServer/ListServer'
 class ListUserContainers extends Component{
     constructor(props){
         super(props);
@@ -107,11 +107,18 @@ class ListUserContainers extends Component{
             return (
                 <div>
                     <h1>List Of User</h1>
-                    <ListUser
+                    <ListServer
                         listOfGuilds = {listOfGuilds}
                         handleKickUser = {(user,server) => this.handleKickUser(user,server)}
                         handleBanUser = {(user,server) => this.handleBanUser(user,server)}
+                        chooseServer = {(server) => this.setState({
+                            server:server
+                        })}
                     />
+                    <ListUser
+                        listOfGuilds = {listOfGuilds}
+                        server = {this.state.server}
+                        handleKickUser = {(user,server) => this.handleKickUser(user,server)}                    />
                 </div>
             )
         } else {
