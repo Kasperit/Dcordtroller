@@ -67,7 +67,6 @@ class ListUserContainers extends Component{
                     if (userInSingleGuild[x].user.tag === user) {
                     	// This kicks the user from the discord server    
                      	//userInSingleGuild[x].kick();     TODO: Lets remove this from comments once we are done
-
                         userInSingleGuild.splice(x, 1);                    
                     }
                 }
@@ -80,6 +79,27 @@ class ListUserContainers extends Component{
         console.log(`Kick ${user} in server ${server}`)
     };
 
+    handleBanUser = (user,server) => {
+        let listOfGuilds = [...this.state.listOfGuilds];
+        for(let i = 0; i< listOfGuilds.length; i++) {
+            if(listOfGuilds[i].server === server) {
+                let userInSingleGuild = [...listOfGuilds[i].users]
+                for (let x = 0; x < userInSingleGuild.length; x++) {
+                    if (userInSingleGuild[x].user.tag === user) {
+                    	// This bans the user from the discord server    
+                        //userInSingleGuild[x].ban();     //TODO: Lets remove this from comments once we are done
+                        userInSingleGuild.splice(x, 1);     
+                    }
+                }
+                listOfGuilds[i].users = [...userInSingleGuild]
+            }
+        }
+        this.setState({
+            listOfGuilds:listOfGuilds
+        });
+        console.log(`Ban ${user} in server ${server}`)
+    };
+
 
     render(){
         const {listOfGuilds} = this.state;
@@ -90,6 +110,7 @@ class ListUserContainers extends Component{
                     <ListUser
                         listOfGuilds = {listOfGuilds}
                         handleKickUser = {(user,server) => this.handleKickUser(user,server)}
+                        handleBanUser = {(user,server) => this.handleBanUser(user,server)}
                     />
                 </div>
             )
