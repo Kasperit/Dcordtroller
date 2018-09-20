@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter,Route} from 'react-router-dom'
 import 'antd/dist/antd.css'
 import './index.css';
 import HeaderBar from './client/components/Navigation/Header/Header'
@@ -13,7 +13,7 @@ class App extends Component {
           <div className="App">
               <HeaderBar/>
               <div className="content">
-                  <ListUserContainers/>
+                  <Route path="/user-list" exact component={ListUserContainers}/>
               </div>
               <FooterBar/>
           </div>

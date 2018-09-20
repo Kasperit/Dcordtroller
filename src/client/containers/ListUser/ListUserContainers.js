@@ -11,6 +11,7 @@ class ListUserContainers extends Component{
         }
     }
 
+
     componentDidMount(){
         const Discord = require('discord.js');
         const client = new Discord.Client();
@@ -105,47 +106,42 @@ class ListUserContainers extends Component{
 
     render(){
         const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
-        const {listOfGuilds} = this.state;
+        const {listOfGuilds,server} = this.state;
         if(listOfGuilds){
             return (
-                <Route path="/user-list" exact render={() =>
-                    <div>
-                        <h1>List Of User</h1>
+                <div>
+                    <h1>List Of User</h1>
+                    <Col span={16}>
                         <Row gutter={16}>
-                            <Col span={16}>
-                                <Row gutter={16}>
-                                    <Col span={12}>
-                                        <ListServer
-                                            listOfGuilds={listOfGuilds}
-                                            handleKickUser={(user, server) => this.handleKickUser(user, server)}
-                                            handleBanUser={(user, server) => this.handleBanUser(user, server)}
-                                            chooseServer={(server) => this.setState({
-                                                server: server
-                                            })}
-                                        />
-                                    </Col>
-                                    <Col span={12}>
-                                        <ListUser
-                                            listOfGuilds={listOfGuilds}
-                                            server={this.state.server}
-                                            handleKickUser={(user, server) => this.handleKickUser(user, server)}
-                                            handleBanUser={(user, server) => this.handleBanUser(user, server)}
-                                        />
-                                    </Col>
-                                </Row>
+                            <Col span={10}>
+                                <ListServer
+                                    listOfGuilds={listOfGuilds}
+                                    handleKickUser={(user, server) => this.handleKickUser(user, server)}
+                                    handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                                    chooseServer={(server) => this.setState({
+                                        server: server
+                                    })}
+                                    serverSelected={server}
+                                />
+                            </Col>
+                            <Col span={14}>
+                                <ListUser
+                                    listOfGuilds={listOfGuilds}
+                                    server={server}
+                                    handleKickUser={(user, server) => this.handleKickUser(user, server)}
+                                    handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                                />
                             </Col>
                         </Row>
-                    </div>
-                }/>
+                    </Col>
+                </div>
             )
         } else {
             return (
-                <Route path="/user-list" exact render={() =>
-                    <div>
-                        <h1>List Of User</h1>
-                        <Spin indicator={iconLoading}/>
-                    </div>
-                }/>
+                <div>
+                    <h1>List Of User</h1>
+                    <Spin indicator={iconLoading}/>
+                </div>
             )
         }
 

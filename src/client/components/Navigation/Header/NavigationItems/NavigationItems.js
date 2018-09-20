@@ -4,16 +4,16 @@ import {NavLink,Redirect} from 'react-router-dom'
 import './NavigationItems.css';
 import { Menu, Dropdown } from 'antd';
 const menu = (
-    <Menu>
+    <Menu className="account-dropdown">
         <Menu.Item>
-            <NavLink to="/user-profile">EDIT</NavLink>
+            <NavLink to="/user-profile">Profile</NavLink>
         </Menu.Item>
         <Menu.Item>
-            <NavLink to="/upgrade">UPGRADE</NavLink>
+            <NavLink to="/upgrade">Upgrade</NavLink>
         </Menu.Item>
         <Menu.Divider/>
         <Menu.Item>
-            <NavLink to="/">LOG OUT</NavLink>
+            <NavLink to="/">Log out</NavLink>
         </Menu.Item>
     </Menu>
 );

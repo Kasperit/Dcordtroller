@@ -8,13 +8,17 @@
     height:3em;
     border-left: 1px groove;
 }
+.NavigationItem :active,
+.NavigationItem :hover{
+    color:black;
+    font-weight: bold;
+    background-color: darkgray;
+    cursor: pointer;
+}
+
 .NavigationItem:last-child{
     border-right: 1px groove;
 
-}
-.NavigationItem:hover{
-    background-color: darkgray;
-    cursor: pointer;
 }
 
 .NavigationItem-active {
@@ -28,10 +32,9 @@
     display: block;
 }
 
-
 .NavigationItem-active :hover,
 .NavigationItem-active :active,
 .NavigationItem-active ::selection{
     background-color: darkgrey;
-
+    color:black
 }

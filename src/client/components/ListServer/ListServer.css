@@ -1,4 +1,15 @@
-.list-server:hover{
+.list-server:hover,
+.list-server:active,
+.list-server::selection{
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.list-server-active {
+    background-color: cornflowerblue;
+}
+
+.list-server-active:hover {
     background-color: cornflowerblue;
     cursor: pointer;
 }

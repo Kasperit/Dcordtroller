@@ -3,7 +3,7 @@ import {List,Card,Icon} from 'antd'
 import './ListServer.css'
 
 const ListServer = (props) => {
-    const {listOfGuilds} = props;
+    const {listOfGuilds,serverSelected} = props;
     let listServer = [];
     for(let i = 0; i< listOfGuilds.length; i++){
         listServer.push(listOfGuilds[i].server)
@@ -21,7 +21,7 @@ const ListServer = (props) => {
                     <List.Item
                         onClick = {() => props.chooseServer(item)}
                         actions={[<Icon type="right"/>]}
-                        className="list-server"
+                        className={serverSelected === item ? 'list-server-active' : 'list-server'}
                     >
                         {item}
                     </List.Item>
