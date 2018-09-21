@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import ListUser from '../../components/ListUser/ListUser'
 import ListServer from '../../components/ListServer/ListServer'
 import {Row,Col,Spin,Icon} from 'antd'
-import {Route} from 'react-router-dom'
 class ListUserContainers extends Component{
     constructor(props){
         super(props);
@@ -130,6 +129,7 @@ class ListUserContainers extends Component{
                                     server={server}
                                     handleKickUser={(user, server) => this.handleKickUser(user, server)}
                                     handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                                    closeUserList = {() => this.setState({server:null})}
                                 />
                             </Col>
                         </Row>

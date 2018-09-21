@@ -1,5 +1,6 @@
 import React from 'react'
-import {List,Card,Button} from 'antd'
+import {List,Card,Button,Icon} from 'antd'
+import './ListUser.css'
 
 const ListUser = (props) => {
     const {listOfGuilds,server} = props;
@@ -16,6 +17,13 @@ const ListUser = (props) => {
             <Card
                 title="Users"
                 bodyStyle={{height:'400px',overflowY:'scroll'}}
+                extra={
+                    <Icon
+                        type="close"
+                        theme="outlined"
+                        className="close-btn"
+                        onClick = {() => props.closeUserList()}
+                    />}
             >
                 <List
                     bordered
