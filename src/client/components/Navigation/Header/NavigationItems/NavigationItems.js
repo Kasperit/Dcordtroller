@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem'
-import {NavLink,Redirect} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './NavigationItems.css';
 import { Menu, Dropdown } from 'antd';
 const menu = (

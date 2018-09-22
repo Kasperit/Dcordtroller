@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Fragment} from 'react'
 import {List,Card,Icon} from 'antd'
 import './ListServer.css'
 
@@ -9,6 +9,7 @@ const ListServer = (props) => {
         listServer.push(listOfGuilds[i].server)
     }
     return (
+        <Fragment>
         <Card
             title="Servers"
             bodyStyle={{height:'400px'}}
@@ -28,6 +29,7 @@ const ListServer = (props) => {
                 )}
             />
         </Card>
+        </Fragment>
     )
 };
 

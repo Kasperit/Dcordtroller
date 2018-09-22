@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import ListUser from '../../components/ListUser/ListUser'
 import ListServer from '../../components/ListServer/ListServer'
 import {Row,Col,Spin,Icon} from 'antd'
+
 class ListUserContainers extends Component{
     constructor(props){
         super(props);
@@ -9,7 +10,9 @@ class ListUserContainers extends Component{
             listOfGuilds: null
         }
     }
-
+    shouldComponentUpdate(nextProps,nextState){
+        return !(nextProps.location.path === this.props.location.path && nextState === this.state);
+    }
 
     componentDidMount(){
         const Discord = require('discord.js');
@@ -67,9 +70,9 @@ class ListUserContainers extends Component{
                 let userInSingleGuild = [...listOfGuilds[i].users]
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].user.tag === user) {
-                    	// This kicks the user from the discord server    
+                    	// This kicks the user from the discord server
                      	//userInSingleGuild[x].kick();     TODO: Lets remove this from comments once we are done
-                        userInSingleGuild.splice(x, 1);                    
+                        userInSingleGuild.splice(x, 1);
                     }
                 }
                 listOfGuilds[i].users = [...userInSingleGuild]
@@ -88,9 +91,9 @@ class ListUserContainers extends Component{
                 let userInSingleGuild = [...listOfGuilds[i].users]
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].user.tag === user) {
-                    	// This bans the user from the discord server    
+                    	// This bans the user from the discord server
                         //userInSingleGuild[x].ban();     //TODO: Lets remove this from comments once we are done
-                        userInSingleGuild.splice(x, 1);     
+                        userInSingleGuild.splice(x, 1);
                     }
                 }
                 listOfGuilds[i].users = [...userInSingleGuild]
