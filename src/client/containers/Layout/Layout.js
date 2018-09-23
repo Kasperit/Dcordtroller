@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import HeaderBar from '../../components/Navigation/Header/Header'
 import FooterBar from '../../components/Navigation/Footer/footer'
 import {BrowserRouter,Switch,Route} from 'react-router-dom'
-import ListUserContainers from '../ListUser/ListUserContainers'
+import ListUserAndServerContainer from '../ListUser/ListUserAndServerContainers'
 import UpdateBlocker from '../UpdateBlocker';
 import ContentWeb from './Content'
 
@@ -12,7 +12,6 @@ class Layout extends Component{
         return this.props.location.pathname !== nextProps.location.pathname
     }*/
     render(){
-        console.log(this.props)
         return(
             <div>
                 <BrowserRouter>
@@ -25,7 +24,7 @@ class Layout extends Component{
                                 <ContentWeb
                                     {...props}
                                 >
-                                    <ListUserContainers
+                                    <ListUserAndServerContainer
                                         {...props}
                                     />
                                 </ContentWeb>
