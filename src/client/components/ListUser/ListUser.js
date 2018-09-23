@@ -1,8 +1,23 @@
 import React,{Fragment} from 'react'
-import {List,Card,Button,Icon,Col} from 'antd'
+import {List,Card,Button,Icon,Col,Modal} from 'antd'
 import './ListUser.css'
 
+
 const ListUser = (props) => {
+    const confirm = Modal.confirm;
+
+    const showConfirm = (item, server , method) => {
+        confirm({
+            title: method === "kick" ? `Do you want to kick ${item}?` : `Do you want to ban ${item}`,
+            content: 'You can add back later',
+            onOk() {
+                method === "kick" ? props.handleKickUser(item, server) : props.handleBanUser(item,server)
+            },
+            onCancel() {
+            },
+        });
+    };
+
     const {listOfGuilds, server} = props;
     let listOfMembersInServer = [];
     if (server) {
@@ -27,14 +42,15 @@ const ListUser = (props) => {
                         />}
                 >
                     <List
+                        locale = {{emptyText: "No user in this server"}}
                         bordered
                         dataSource={listOfMembersInServer}
                         renderItem={item => (
                             <List.Item
                                 actions={
                                     [
-                                        <Button onClick={() => props.handleKickUser(item, server)}>Kick</Button>,
-                                        <Button onClick={() => props.handleBanUser(item, server)}>Ban</Button>
+                                        <Button onClick={() => showConfirm(item, server, "kick")}>Kick</Button>,
+                                        <Button onClick={() => showConfirm(item, server)}>Ban</Button>
                                     ]
                                 }
                             >

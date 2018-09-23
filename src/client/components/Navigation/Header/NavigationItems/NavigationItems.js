@@ -35,7 +35,7 @@ const navigationItems = ( props ) => (
             </div>
         </NavigationItem>
         <NavigationItem link="/account">
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menu} trigger={['click']}>
                 <div style={{height:'3em'}}>
                     <div href="#" className="content-navigation-dropdown">
                         ACCOUNT
