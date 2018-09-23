@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+mongoose.set('useCreateIndex', true);
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -45,7 +47,17 @@ userSchema.method.comparePassword = async function(candidatePassword, next) {
 };
 
 const User = mongoose.model('User', userSchema);
-User.create(
+
+const doc = new User({
+    email: "sabc@xyz.ssll",
+    username: "aaraall",
+    password: "ssssss"
+  });
+
+User.init()
+    .then(() => User.create(doc));
+
+/*User.create(
   {
     email: "abc@xyz.ss",
     username: "aaaa",
@@ -57,6 +69,6 @@ User.create(
       console.log("new user" + user);
     }
   }
-);
+);*/
 
 module.exports = User;
