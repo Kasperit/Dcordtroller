@@ -70,7 +70,6 @@ class ListUserContainers extends Component{
         if(listOfGuilds){
             return (
                 <div>
-                    <h1>List Of User</h1>
                     <Col span={16}>
                         <ListServerContainer
                             listOfGuilds={listOfGuilds}
@@ -81,7 +80,6 @@ class ListUserContainers extends Component{
         } else {
             return (
                 <div>
-                    <h1>List Of User</h1>
                     <Spin indicator={iconLoading}/>
                 </div>
             )

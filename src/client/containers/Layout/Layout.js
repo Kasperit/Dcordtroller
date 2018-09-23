@@ -23,7 +23,9 @@ class Layout extends Component{
                             <Route key={window.location.href} path="/user-list" render={(props) =>  (
                                 <ContentWeb
                                     {...props}
+                                    title="List Of User"
                                 >
+
                                     <ListUserAndServerContainer
                                         {...props}
                                     />
