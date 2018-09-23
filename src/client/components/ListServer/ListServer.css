@@ -13,3 +13,6 @@
     background-color: cornflowerblue;
     cursor: pointer;
 }
+.server-card-head {
+    background-color: gray;
+}

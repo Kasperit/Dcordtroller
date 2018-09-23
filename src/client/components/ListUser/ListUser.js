@@ -32,6 +32,7 @@ const ListUser = (props) => {
             <Col span={14}>
                 <Card
                     title="Users"
+                    headStyle={{backgroundColor:'#C1BBBC'}}
                     bodyStyle={{height: '400px', overflowY: 'scroll'}}
                     extra={
                         <Icon
