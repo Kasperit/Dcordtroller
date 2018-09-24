@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   try {
     if (!this.isModified('password')) {
       return next();
@@ -37,7 +37,7 @@ userSchema.pre('save', async function(next) {
   }
 });
 
-userSchema.method.comparePassword = async function(candidatePassword, next) {
+userSchema.methods.comparePassword = async function (candidatePassword, next) {
   try {
     const isMatch = await bcrypt.compare(candidatePassword, this.password);
     return isMatch;
@@ -47,28 +47,5 @@ userSchema.method.comparePassword = async function(candidatePassword, next) {
 };
 
 const User = mongoose.model('User', userSchema);
-
-const doc = new User({
-    email: "sabc@xyz.ssll",
-    username: "aaraall",
-    password: "ssssss"
-  });
-
-User.init()
-    .then(() => User.create(doc));
-
-/*User.create(
-  {
-    email: "abc@xyz.ss",
-    username: "aaaa",
-    password: "ssssss"
-  }, function(err, user) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("new user" + user);
-    }
-  }
-);*/
 
 module.exports = User;
