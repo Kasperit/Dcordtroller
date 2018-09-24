@@ -9,16 +9,20 @@
 .activePlayer-tab:hover,
 .activePlayer-tab:active {
     color:blue !important;
+    font-weight: bold !important;
 }
 
 .bannedPlayer-tab{
     color:red !important;
-    font-weight: 500 !important;
 }
 
 .bannedPlayer-tab:hover,
-.bannedPlayer-tab:active {
-    color: red ;
-    font-weight: bold;
+.bannedPlayer-tab:active,
+.bannedPlayer-tab::selection {
+    color: red !important;
+    font-weight: bold !important;
 }
 
+.ant-tabs-nav .ant-tabs-tab-active{
+    font-weight:bold;
+}
