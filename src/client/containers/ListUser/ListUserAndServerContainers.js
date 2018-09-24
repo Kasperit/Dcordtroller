@@ -34,6 +34,7 @@ class ListUserContainers extends Component{
                 }
                 listOfGuilds.push(
                     {
+                        serverObject: listOfGuildsFormat[i],
                         server: listOfGuildsFormat[i].name,
                         usersActive: listOfMembersActive,
                         usersBanned: listOfMembersBanned
