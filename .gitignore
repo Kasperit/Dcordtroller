@@ -8,6 +8,9 @@
 # modules, use 'npm install' to install them before running
 /node_modules
 
+# data
+/server/data
+
 # production
 /build
 
