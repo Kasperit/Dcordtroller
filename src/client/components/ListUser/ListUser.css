@@ -1,3 +1,24 @@
 .close-btn:hover{
     cursor: pointer;
 }
+
+.activePlayer-tab{
+    color:blue !important;
+}
+
+.activePlayer-tab:hover,
+.activePlayer-tab:active {
+    color:blue !important;
+}
+
+.bannedPlayer-tab{
+    color:red !important;
+    font-weight: 500 !important;
+}
+
+.bannedPlayer-tab:hover,
+.bannedPlayer-tab:active {
+    color: red ;
+    font-weight: bold;
+}
+

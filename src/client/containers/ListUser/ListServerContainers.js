@@ -20,15 +20,15 @@ class ListServerContainer extends Component{
         let listOfGuilds = [...this.state.listOfGuilds];
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === server) {
-                let userInSingleGuild = [...listOfGuilds[i].users]
+                let userInSingleGuild = [...listOfGuilds[i].usersActive];
                 for (let x = 0; x < userInSingleGuild.length; x++) {
-                    if (userInSingleGuild[x].user.tag === user) {
+                    if (userInSingleGuild[x].tag === user) {
                         // This kicks the user from the discord server
                         //userInSingleGuild[x].kick();     TODO: Lets remove this from comments once we are done
                         userInSingleGuild.splice(x, 1);
                     }
                 }
-                listOfGuilds[i].users = [...userInSingleGuild]
+                listOfGuilds[i].usersActive = [...userInSingleGuild]
             }
         }
         this.setState({
@@ -41,15 +41,18 @@ class ListServerContainer extends Component{
         let listOfGuilds = [...this.state.listOfGuilds];
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === server) {
-                let userInSingleGuild = [...listOfGuilds[i].users]
+                let userInSingleGuild = [...listOfGuilds[i].usersActive];
+                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
                 for (let x = 0; x < userInSingleGuild.length; x++) {
-                    if (userInSingleGuild[x].user.tag === user) {
-                        // This bans the user from the discord server
-                        //userInSingleGuild[x].ban();     //TODO: Lets remove this from comments once we are done
+                    if (userInSingleGuild[x].tag === user) {
+                        // This kicks the user from the discord server
+                        //userInSingleGuild[x].ban();     TODO: Lets remove this from comments once we are done
+                        userBannedInSingleGuild.push(userInSingleGuild[x]);
                         userInSingleGuild.splice(x, 1);
                     }
                 }
-                listOfGuilds[i].users = [...userInSingleGuild]
+                listOfGuilds[i].usersActive = [...userInSingleGuild];
+                listOfGuilds[i].usersBanned = [...userBannedInSingleGuild];
             }
         }
         this.setState({
@@ -57,6 +60,30 @@ class ListServerContainer extends Component{
         });
         console.log(`Ban ${user} in server ${server}`)
     };
+
+    handleUnBanUser = (user,server) => {
+        let listOfGuilds = [...this.state.listOfGuilds];
+        for(let i = 0; i< listOfGuilds.length; i++) {
+            if(listOfGuilds[i].server === server) {
+                let userInSingleGuild = [...listOfGuilds[i].usersActive];
+                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
+                for (let x = 0; x < userBannedInSingleGuild.length; x++) {
+                    if (userBannedInSingleGuild[x].tag === user) {
+                        // This kicks the user from the discord server
+                        //userInSingleGuild[x].ban();     TODO: Lets remove this from comments once we are done
+                        userInSingleGuild.push(userBannedInSingleGuild[x]);
+                        userBannedInSingleGuild.splice(x, 1);
+                    }
+                }
+                listOfGuilds[i].usersActive = [...userInSingleGuild];
+                listOfGuilds[i].usersBanned = [...userBannedInSingleGuild];
+            }
+        }
+        this.setState({
+            listOfGuilds:listOfGuilds
+        });
+        console.log(`UnBan ${user} in server ${server}`)
+    }
 
 
     render(){
@@ -71,6 +98,7 @@ class ListServerContainer extends Component{
                     handleKickUser={(user, server) => this.handleKickUser(user, server)}
                     handleBanUser={(user, server) => this.handleBanUser(user, server)}
                     closeUserList = {() => this.setState({server:null})}
+                    handleUnBanUser = {(user,server) => this.handleUnBanUser(user,server)}
                 />
         }
         for(let i = 0; i< listOfGuilds.length; i++){

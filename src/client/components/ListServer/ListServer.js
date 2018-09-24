@@ -8,8 +8,8 @@ const ListServer = (props) => {
         <Col span={10}>
             <Card
                 title="Servers"
-                headStyle={{backgroundColor:'#C1BBBC'}}
-                bodyStyle={{height:400}}
+                headStyle={{backgroundColor:'#C1BBBC',textAlign:'center',height:95}}
+                bodyStyle={{height:438}}
             >
                 <List
 

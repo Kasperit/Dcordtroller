@@ -22,14 +22,21 @@ class ListUserContainers extends Component{
             let listOfGuilds = [];
             const listOfGuildsFormat = client.guilds.array();
             for(let i = 0; i< listOfGuildsFormat.length; i++) {
-                let listOfMembers = [];
+                let listOfMembersActive = [];
+                let listOfMembersBanned = [];
+                listOfGuildsFormat[i].fetchBans().then(function(users) {
+                    Array.from(users).forEach(e => {
+                        listOfMembersBanned.push(e[1]);
+                    });
+                });
                 for (let x = 0; x < listOfGuildsFormat[i].members.array().length; x++) {
-                    listOfMembers.push(listOfGuildsFormat[i].members.array()[x])
+                    listOfMembersActive.push(listOfGuildsFormat[i].members.array()[x].user)
                 }
                 listOfGuilds.push(
                     {
                         server: listOfGuildsFormat[i].name,
-                        users: listOfMembers
+                        usersActive: listOfMembersActive,
+                        usersBanned: listOfMembersBanned
                     }
                 )
             }
@@ -67,6 +74,7 @@ class ListUserContainers extends Component{
     render(){
         const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
         const {listOfGuilds} = this.state;
+        console.log(listOfGuilds)
         if(listOfGuilds){
             return (
                 <div>
