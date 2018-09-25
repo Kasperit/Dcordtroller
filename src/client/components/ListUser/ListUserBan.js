@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import SingleUserInfo from './SingleUserInfo'
 
-import {List,Modal,Button} from 'antd'
+import {List,Modal,Button,Popover,Icon} from 'antd'
 
 
 const ListUserBan = (props) => {
@@ -24,7 +25,7 @@ const ListUserBan = (props) => {
         for (let i = 0; i < listOfGuilds.length; i++) {
             if (listOfGuilds[i].server === server) {
                 for (let x = 0; x < listOfGuilds[i].usersBanned.length; x++) {
-                    listOfMembersBannedInServer.push(listOfGuilds[i].usersBanned[x].tag)
+                    listOfMembersBannedInServer.push(listOfGuilds[i].usersBanned[x])
                 }
             }
         }
@@ -37,11 +38,19 @@ const ListUserBan = (props) => {
                     <List.Item
                         actions={
                             [
-                                <Button onClick={() => showConfirm(item, server)}>Unban</Button>
+                                <Button onClick={() => showConfirm(item.tag, server)}>Unban</Button>
                             ]
                         }
                     >
-                        {item}
+                        {item.tag} &nbsp;
+                        <Popover content={<SingleUserInfo info={item}/>}
+                                 title="User Info"
+                                 trigger="click"
+                        >
+                            <div className="user-info-btn">
+                                <Icon type="info-circle" theme="outlined" />
+                            </div>
+                        </Popover>
                     </List.Item>
                 )}
             />

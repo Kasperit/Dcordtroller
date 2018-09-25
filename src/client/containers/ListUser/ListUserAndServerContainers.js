@@ -69,7 +69,6 @@ class ListUserContainers extends Component{
     }
 
     handleReceiveMsg = (event) => {
-        console.log(event.author)
         this.setState({
             msgInfo: {
                 userMsg: event.author,
@@ -78,7 +77,7 @@ class ListUserContainers extends Component{
         });
 
         //client.channels.get("448847115620450314").send('My Message');
-    }
+    };
 
 
 

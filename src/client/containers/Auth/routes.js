@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Form, Icon, Input, Button } from 'antd';
 import './login.css';
-import Register from './client/containers/Auth/register'
+import Register from './register'
 
 const FormItem = Form.Item;
 
