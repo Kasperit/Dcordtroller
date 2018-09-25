@@ -9,7 +9,7 @@ const ListUserBan = (props) => {
     const showConfirm = (item, server) => {
         confirm({
             title: `Do you want to unban ${item}?`,
-            content: `${item} will then join your server`,
+            content: `${item} will be able to join your server`,
             onOk() {
                 props.handleUnBanUser(item, server)
             },
@@ -30,7 +30,7 @@ const ListUserBan = (props) => {
         }
         return (
             <List
-                locale = {{emptyText: "No user in this server"}}
+                locale = {{emptyText: "No users banned in this server"}}
                 bordered
                 dataSource={listOfMembersBannedInServer}
                 renderItem={item => (
