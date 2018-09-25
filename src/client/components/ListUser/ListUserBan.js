@@ -19,7 +19,6 @@ const ListUserBan = (props) => {
     };
 
     const {listOfGuilds, server} = props;
-    console.log(listOfGuilds)
     let listOfMembersBannedInServer = [];
     if (server) {
         for (let i = 0; i < listOfGuilds.length; i++) {

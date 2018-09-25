@@ -13,7 +13,7 @@ class ListServerContainer extends Component{
     }
 
     shouldComponentUpdate(nextProps,nextState) {
-        return !(this.state === nextState)
+        return !(this.state.server === nextState.server)
     }
 
     handleKickUser = (user,server) => {
@@ -69,7 +69,6 @@ class ListServerContainer extends Component{
                 let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
                 for (let x = 0; x < userBannedInSingleGuild.length; x++) {
                     if (userBannedInSingleGuild[x].tag === user) {
-                        userInSingleGuild.push(userBannedInSingleGuild[x]);
                         listOfGuilds[i].serverObject.unban(userBannedInSingleGuild[x].id);
                         userBannedInSingleGuild.splice(x, 1);
                     }

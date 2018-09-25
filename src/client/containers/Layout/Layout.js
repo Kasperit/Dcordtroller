@@ -20,10 +20,10 @@ class Layout extends Component{
                             <HeaderBar/>
                         </UpdateBlocker>
                         <Switch>
-                            <Route key={window.location.href} path="/user-list" render={(props) =>  (
+                            <Route key={window.location.href} path="/servers" render={(props) =>  (
                                 <ContentWeb
                                     {...props}
-                                    title="List Of User"
+                                    title="Servers"
                                 >
 
                                     <ListUserAndServerContainer

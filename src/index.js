@@ -2,55 +2,57 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App'
+import Login from '../src/client/containers/Auth/login'
+import Register from '../src/client/containers/Auth/register'
 
 class BmiForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      height: '',
-      weight: '',
-      url: ''
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            height: '',
+            weight: '',
+            url: ''
+        };
 
-    this.handleChangeHeight = this.handleChangeHeight.bind(this);
-    this.handleChangeWeight = this.handleChangeWeight.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeHeight = this.handleChangeHeight.bind(this);
+        this.handleChangeWeight = this.handleChangeWeight.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
-    const Discord = require('discord.js');
-    const client = new Discord.Client();
+        const Discord = require('discord.js');
+        const client = new Discord.Client();
 
-    client.on('ready', () => {
-      console.log(`Logged in as ${client.user.tag}!`);
-      for (let index = 0; index < client.guilds.array().length; index++) {
-        console.log(client.guilds.array()[index].name);
-        for (let x = 0; x < client.guilds.array()[index].members.array().length; x++) {
-          console.log(client.guilds.array()[index].members.array()[x].user.tag);
-          if (client.guilds.array()[index].members.array()[x].user.tag == 'Tadaaz#7096') {
-            console.log("would have been kicked");
-            //client.guilds.array()[index].members.array()[x].kick();
-          }
-        }
-        console.log(client.guilds.array()[index].id);
-      }
-    });
+        client.on('ready', () => {
+            console.log(`Logged in as ${client.user.tag}!`);
+            for (let index = 0; index < client.guilds.array().length; index++) {
+                console.log(client.guilds.array()[index].name);
+                for (let x = 0; x < client.guilds.array()[index].members.array().length; x++) {
+                    console.log(client.guilds.array()[index].members.array()[x].user.tag);
+                    if (client.guilds.array()[index].members.array()[x].user.tag == 'Tadaaz#7096') {
+                        console.log("would have been kicked");
+                        //client.guilds.array()[index].members.array()[x].kick();
+                    }
+                }
+                console.log(client.guilds.array()[index].id);
+            }
+        });
 
-    client.on("guildCreate", guild => {
-      console.log("Joined a new guild: " + guild.name);
+        client.on("guildCreate", guild => {
+            console.log("Joined a new guild: " + guild.name);
 
-      console.log(guild.channel.id);
-      //Your other stuff like adding to guildArray
-    });
+            console.log(guild.channel.id);
+            //Your other stuff like adding to guildArray
+        });
 
-    client.on('message', msg => {
-      this.handleChangeWeight(msg);
-      console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
-      //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
-    });
+        client.on('message', msg => {
+            this.handleChangeWeight(msg);
+            console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
+            //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
+        });
 
-    client.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
+        client.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
 
-  }
+    }
 
   handleChangeHeight(event) {
     this.setState({ height: event.target.value });

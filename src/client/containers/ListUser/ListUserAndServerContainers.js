@@ -42,7 +42,8 @@ class ListUserContainers extends Component{
                 )
             }
             this.setState({
-                listOfGuilds: listOfGuilds
+                listOfGuilds: listOfGuilds,
+                listOfBannedWords: ["TEST","TEST1"]
             });
         });
 
@@ -54,7 +55,7 @@ class ListUserContainers extends Component{
         });
 
         client.on('message', msg => {
-            this.handleChangeWeight(msg);
+            this.handleReceiveMsg(msg);
             console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
             //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
         });
@@ -62,10 +63,14 @@ class ListUserContainers extends Component{
         client.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
     }
 
-    handleChangeWeight = (event) => {
-        //this.setState({weight: event.target.value});
-        this.setState({ weight: `${event.author.username}` + ": " + event.content });
-        this.setState({ url: event.author.avatarURL});
+    handleReceiveMsg = (event) => {
+        console.log(event.author)
+        this.setState({
+            msgInfo: {
+                userMsg: event.author,
+                contentMsg: event.content
+            }
+        });
 
         //client.channels.get("448847115620450314").send('My Message');
     }
@@ -74,8 +79,13 @@ class ListUserContainers extends Component{
 
     render(){
         const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
-        const {listOfGuilds} = this.state;
-        console.log(listOfGuilds)
+        const {listOfGuilds,msgInfo,listOfBannedWords} = this.state;
+        if(msgInfo){
+            if(listOfBannedWords.indexOf(msgInfo.contentMsg) > -1){
+                console.log(`User ${msgInfo.userMsg.tag} use bad words`)
+            }
+        }
+
         if(listOfGuilds){
             return (
                 <div>

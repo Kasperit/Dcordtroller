@@ -19,9 +19,9 @@ const menu = (
 );
 const navigationItems = ( props ) => (
     <ul className="NavigationItems">
-        <NavigationItem link="/user-list">
+        <NavigationItem link="/servers">
             <div className="content-navigation">
-                USER LIST
+                SERVERS
             </div>
         </NavigationItem>
         <NavigationItem link="/account">
