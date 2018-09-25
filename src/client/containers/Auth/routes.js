@@ -3,23 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Form, Icon, Input, Button } from 'antd';
 import './login.css';
+import Register from './client/containers/Auth/register'
 
 const FormItem = Form.Item;
 
-class Login extends React.Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  }
+const { getFieldDecorator } = this.props.form;
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    return (
-      <div>
+const Routes = () => (
+    <Router>
+    <div>
         <div>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
@@ -50,9 +42,12 @@ class Login extends React.Component {
           <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
         </div>
       </div>
-      //<Route path="/register" component={Register} />
-    );
-  }
-}
+      <Route path="/register" component={Registerr} />
+    </Router>
+);
 
-export default Form.create()(Login)
+const Registerr = () => (
+    <Register/>
+);
+
+export default Routes;
