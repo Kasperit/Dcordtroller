@@ -1,9 +1,10 @@
 import React, {Component,Fragment} from 'react';
 import './connection.css'
 import Layout from '../Layout/Layout'
+import DetectBadLanguage from '../Bot/detectBadLanguage'
 class connectionToDiscord extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             listOfGuilds:null
         }
@@ -74,7 +75,6 @@ class connectionToDiscord extends Component {
 
     render(){
         const {listOfGuilds,msgInfo,client} = this.state;
-        console.log(msgInfo)
         if(!listOfGuilds){
             return (
                 <Fragment>
@@ -84,7 +84,16 @@ class connectionToDiscord extends Component {
 
                 </Fragment>)
         } else {
-            return <Layout infoFromDiscord={listOfGuilds}/>;
+            return (
+                <Fragment>
+                    <Layout
+                        infoFromDiscord={listOfGuilds}
+                    />
+                    <DetectBadLanguage
+                        msg = {msgInfo}
+                    />
+                </Fragment>
+            );
         }
     }
 }

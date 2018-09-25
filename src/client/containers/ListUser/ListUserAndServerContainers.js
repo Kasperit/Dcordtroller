@@ -10,7 +10,8 @@ class ListUserContainers extends Component{
         }
     }
     shouldComponentUpdate(nextProps,nextState){
-        return !(nextProps.location.path === this.props.location.path && nextState === this.state);
+        return !(nextProps.location.path === this.props.location.path
+                && nextState === this.state)
     }
 
     componentDidMount(){
@@ -19,13 +20,9 @@ class ListUserContainers extends Component{
 
     render(){
         const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
-        const {msgInfo,listOfBannedWords} = this.state;
+        const {listOfBannedWords} = this.state;
         const {infoFromDiscord} = this.props;
-        if(msgInfo){
-            if(listOfBannedWords.indexOf(msgInfo.contentMsg) > -1){
-                console.log(`User ${msgInfo.userMsg.tag} use bad words`)
-            }
-        }
+
         if(infoFromDiscord){
             return (
                 <div>

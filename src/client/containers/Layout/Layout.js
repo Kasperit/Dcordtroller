@@ -27,9 +27,9 @@ class Layout extends Component{
                                     {...props}
                                     title="Servers"
                                 >
-
                                     <ListUserAndServerContainer
                                         infoFromDiscord = {this.props.infoFromDiscord}
+                                        msg = {this.props.msg}
                                         {...props}
                                     />
                                 </ContentWeb>
