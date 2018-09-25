@@ -13,7 +13,7 @@ class ListServerContainer extends Component{
     }
 
     shouldComponentUpdate(nextProps,nextState) {
-        return !(this.state.server === nextState.server)
+        return !(this.state.server === nextState.server) || this.state.listOfGuilds !== nextState.listOfGuilds
     }
 
     handleKickUser = (user,server) => {
