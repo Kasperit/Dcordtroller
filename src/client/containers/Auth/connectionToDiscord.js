@@ -43,7 +43,8 @@ class connectionToDiscord extends Component {
             }
 
             this.setState({
-                listOfGuilds: listOfGuilds
+                listOfGuilds: listOfGuilds,
+                client: client.user.tag
             });
         });
 
@@ -72,12 +73,15 @@ class connectionToDiscord extends Component {
     };
 
     render(){
-        const {listOfGuilds,msgInfo} = this.state;
+        const {listOfGuilds,msgInfo,client} = this.state;
         console.log(msgInfo)
         if(!listOfGuilds){
             return (
                 <Fragment>
-                    <div className="lds-css ng-scope"><div style={{width:"100%",height:"100%"}} className="lds-double-ring"><div></div><div></div></div></div>
+                    <div className="lds-css ng-scope">
+                        <div style={{width:"100%",height:"100%"}} className="lds-double-ring"><div></div><div></div></div>
+                    </div>
+
                 </Fragment>)
         } else {
             return <Layout infoFromDiscord={listOfGuilds}/>;

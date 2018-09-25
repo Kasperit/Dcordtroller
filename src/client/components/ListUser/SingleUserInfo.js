@@ -2,6 +2,7 @@ import React from 'react'
 import {Col,Row} from 'antd'
 import './ListUser.css'
 const singleUserInfo = (props) => {
+    console.log(props.info)
     return (
         <div className="user-info-content">
             <Row gutter="24">

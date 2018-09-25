@@ -1,5 +1,5 @@
 import React,{Fragment} from 'react'
-import {List,Button,Divider,Modal,Popover,Icon} from 'antd'
+import {List,Button,Divider,Modal,Popover,Icon,Tag} from 'antd'
 import './ListUser.css'
 import SingleUserInfo from './SingleUserInfo'
 
@@ -57,6 +57,7 @@ const ListUserActive = (props) => {
                                     <Icon type="info-circle" theme="outlined" />
                                 </div>
                             </Popover>
+                            &nbsp; {item.bot ? <Tag color="blue">BOT</Tag>:null}
                         </List.Item>
                     )}
                 />
@@ -84,6 +85,7 @@ const ListUserActive = (props) => {
                                 <Icon type="info-circle" theme="outlined" />
                             </div>
                         </Popover>
+                        &nbsp; {item.bot ? <Tag color="blue">BOT</Tag>:null}
                     </List.Item>
                 )}
             />

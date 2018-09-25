@@ -59,7 +59,7 @@
     left: 20px;
     border-radius: 50%;
     border: 8px solid #000;
-    border-color: #4658ac transparent #4658ac transparent;
+    border-color: #6d4e3e transparent #6d4e3e transparent;
     -webkit-animation: lds-double-ring 1s linear infinite;
     animation: lds-double-ring 1s linear infinite;
 }
@@ -68,7 +68,7 @@
     height: 140px;
     top: 30px;
     left: 30px;
-    border-color: transparent #e7008a transparent #e7008a;
+    border-color: transparent #9d8074 transparent #9d8074;
     -webkit-animation: lds-double-ring_reverse 1s linear infinite;
     animation: lds-double-ring_reverse 1s linear infinite;
 }
