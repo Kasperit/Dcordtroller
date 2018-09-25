@@ -24,18 +24,23 @@ class ListUserContainers extends Component{
             for(let i = 0; i< listOfGuildsFormat.length; i++) {
                 let listOfMembersActive = [];
                 let listOfMembersBanned = [];
+                let listOfServerAdmins = [];
                 listOfGuildsFormat[i].fetchBans().then(function(users) {
                     Array.from(users).forEach(e => {
                         listOfMembersBanned.push(e[1]);
                     });
                 });
                 for (let x = 0; x < listOfGuildsFormat[i].members.array().length; x++) {
-                    listOfMembersActive.push(listOfGuildsFormat[i].members.array()[x].user)
+                    if (listOfGuildsFormat[i].members.array()[x].permissions.has("KICK_MEMBERS")) {
+                        listOfServerAdmins.push(listOfGuildsFormat[i].members.array()[x].user);
+                    }
+                    listOfMembersActive.push(listOfGuildsFormat[i].members.array()[x].user);
                 }
                 listOfGuilds.push(
                     {
                         serverObject: listOfGuildsFormat[i],
                         server: listOfGuildsFormat[i].name,
+                        serverAdmins: listOfServerAdmins,
                         usersActive: listOfMembersActive,
                         usersBanned: listOfMembersBanned
                     }
