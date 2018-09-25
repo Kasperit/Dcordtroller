@@ -1,7 +1,7 @@
 import React, {Component,Fragment} from 'react';
 import './connection.css'
 import Layout from '../Layout/Layout'
-import DetectBadLanguage from '../Bot/detectBadLanguage'
+import BotFunctions from '../Bot/BotFunctions'
 class connectionToDiscord extends Component {
     constructor(props){
         super(props);
@@ -89,7 +89,7 @@ class connectionToDiscord extends Component {
                     <Layout
                         infoFromDiscord={listOfGuilds}
                     />
-                    <DetectBadLanguage
+                    <BotFunctions
                         msg = {msgInfo}
                     />
                 </Fragment>
