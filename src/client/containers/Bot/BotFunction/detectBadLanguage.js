@@ -56,7 +56,9 @@ class detectBadLanguage extends Component{
                         channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]}st time`) :
                         this.state[msg.userMsg.tag] === 2 ?
                         channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]}nd time. Next time you will be kicked`) :
-                        channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]} time`);
+                            this.state[msg.userMsg.tag] === 3 ?
+                            channelId.send(`User ${msg.userMsg.tag} is kicked !`):
+                                channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]} time`)
                     this.warningCount(msg.userMsg.tag);
                     return null;
                 }
