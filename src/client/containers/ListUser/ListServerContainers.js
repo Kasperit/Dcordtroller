@@ -43,11 +43,12 @@ class ListServerContainer extends Component{
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === server) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive];
-                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
+                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
+                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned];
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].tag === user) {
                         // This kicks the user from the discord server
-                        //userInSingleGuild[x].ban();     TODO: Lets remove this from comments once we are done
+                        userInSingleGuildMemberObject[x].ban();
                         userBannedInSingleGuild.push(userInSingleGuild[x]);
                         userInSingleGuild.splice(x, 1);
                     }
