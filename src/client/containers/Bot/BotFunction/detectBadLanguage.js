@@ -49,6 +49,7 @@ class detectBadLanguage extends Component{
             let msgContent = msg.contentMsg.slice(0);
             let msgContentArray = msgContent.split(' ');
             msgContentArray = msgContentArray.map(ele => ele.toLowerCase());
+            listOfBannedWords =listOfBannedWords.map(ele => ele.toLowerCase());
             for(let i = 0; i< msgContentArray.length; i++){
                 if(listOfBannedWords.indexOf(msgContentArray[i]) > -1){
                     this.state[msg.userMsg.tag] === 1 ?
