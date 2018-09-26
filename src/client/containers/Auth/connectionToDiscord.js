@@ -35,6 +35,7 @@ class connectionToDiscord extends Component {
                 let listOfMembersActive = [];
                 let listOfMembersBanned = [];
                 let listOfServerAdmins = [];
+                let listOfMemberObjects = [];
                 listOfGuildsFormat[i].fetchBans().then(function(users) {
                     Array.from(users).forEach(e => {
                         listOfMembersBanned.push(e[1]);
@@ -45,6 +46,7 @@ class connectionToDiscord extends Component {
                         listOfServerAdmins.push(listOfGuildsFormat[i].members.array()[x].user);
                     }
                     listOfMembersActive.push(listOfGuildsFormat[i].members.array()[x].user);
+                    listOfMemberObjects.push(listOfGuildsFormat[i].members.array()[x]);
                 }
                 listOfGuilds.push(
                     {
@@ -52,6 +54,7 @@ class connectionToDiscord extends Component {
                         server: listOfGuildsFormat[i].name,
                         serverAdmins: listOfServerAdmins,
                         usersActive: listOfMembersActive,
+                        memberObjects: listOfMemberObjects,
                         usersBanned: listOfMembersBanned
                     }
                 )
