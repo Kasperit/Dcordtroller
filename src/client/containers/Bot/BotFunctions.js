@@ -31,6 +31,7 @@ class BotFunctions extends Component{
         return(
             <DetectBadLanguage
                 msg = {this.props.msg}
+                listOfGuilds = {this.props.infoFromDiscord}
                 handleKickUserByBot = {(userTag) => this.handleKickUserByBot(userTag)}
             />
         )

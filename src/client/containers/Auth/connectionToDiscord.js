@@ -74,27 +74,28 @@ class connectionToDiscord extends Component {
         });
 
         client.on('message', msg => {
-            this.handleReceiveMsg(msg);
-            console.log(msg)
+            this.handleReceiveMsg(msg,client);
             //console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
             //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
         });
 
+
     }
 
-    handleReceiveMsg = (event) => {
+    handleReceiveMsg = (event,client) => {
         this.setState({
             msgInfo: {
                 userMsg: event.author,
                 contentMsg: event.content,
-                serverId: event.channel.guild.id
+                serverId: event.channel.guild.id,
+                client: client,
+                msgObj: event
             }
         });
     };
 
     render(){
-        const {listOfGuilds,msgInfo,client} = this.state;
-        console.log(listOfGuilds)
+        const {listOfGuilds,msgInfo} = this.state;
         if(!listOfGuilds){
             return (
                 <Fragment>
