@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Form, Icon, Input, Button } from 'antd';
 import './login.css';
+import Register from './register'
 
 const FormItem = Form.Item;
 
@@ -43,9 +44,12 @@ class Login extends React.Component {
             </FormItem>
           </Form>
         </div>
-        <div>
-          <Link to="/register">Register</Link>
-        </div>
+        <Router>
+          <div>
+            <Link to="/register">Register</Link>
+            <Route path="/register" component={Register} />
+          </div>
+        </Router>
         <div>
           <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
         </div>

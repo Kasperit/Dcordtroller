@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {BrowserRouter,Link,Route} from 'react-router-dom'
 import { Form, Icon, Input, Button } from 'antd';
 import './login.css';
 import Register from './register'
 
 const FormItem = Form.Item;
 
-const { getFieldDecorator } = this.props.form;
-
 const Routes = () => (
-    <Router>
+    <BrowserRouter>
     <div>
         <div>
           <Form onSubmit={this.handleSubmit} className="login-form">
@@ -42,12 +40,8 @@ const Routes = () => (
           <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
         </div>
       </div>
-      <Route path="/register" component={Registerr} />
-    </Router>
-);
-
-const Registerr = () => (
-    <Register/>
+      <Route path="/register" component={Register} />
+    </BrowserRouter>
 );
 
 export default Routes;
