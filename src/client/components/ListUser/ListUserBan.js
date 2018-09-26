@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import SingleUserInfo from './SingleUserInfo'
 
 import {List,Modal,Button,Popover,Icon} from 'antd'

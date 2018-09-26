@@ -35,11 +35,10 @@ class detectBadLanguage extends Component{
 
     render(){
         const {msg,listOfGuilds} = this.props;
-        const {listOfBannedWords} = this.state;
+        let {listOfBannedWords} = this.state;
 
         if(msg){
             for(let i = 0; i< listOfGuilds.length;i++){
-                console.log(listOfGuilds[i].serverAdmins);
                 for(let j = 0; j< listOfGuilds[i].serverAdmins.length; j++){
                     if(msg.userMsg.tag === listOfGuilds[i].serverAdmins[j].tag){
                         return null
@@ -47,11 +46,19 @@ class detectBadLanguage extends Component{
                 }
             }
             const channelId = msg.client.channels.get(msg.msgObj.channel.id);
-            if(listOfBannedWords.indexOf(msg.contentMsg) > -1){
-                this.state[msg.userMsg.tag] === 2 ?
-                    channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]} time. Next time you will be kicked`) :
-                    channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]} time`);
-                this.warningCount(msg.userMsg.tag)
+            let msgContent = msg.contentMsg.slice(0);
+            let msgContentArray = msgContent.split(' ');
+            msgContentArray = msgContentArray.map(ele => ele.toLowerCase());
+            for(let i = 0; i< msgContentArray.length; i++){
+                if(listOfBannedWords.indexOf(msgContentArray[i]) > -1){
+                    this.state[msg.userMsg.tag] === 1 ?
+                        channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]}st time`) :
+                        this.state[msg.userMsg.tag] === 2 ?
+                        channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]}nd time. Next time you will be kicked`) :
+                        channelId.send(`Warning! User ${msg.userMsg.tag} please do not use bad words. This is the ${this.state[msg.userMsg.tag]} time`);
+                    this.warningCount(msg.userMsg.tag);
+                    return null;
+                }
             }
         }
         return null;
