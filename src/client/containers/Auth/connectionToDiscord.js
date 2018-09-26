@@ -76,7 +76,6 @@ class connectionToDiscord extends Component {
         client.on('message', msg => {
             this.handleReceiveMsg(msg);
             console.log(msg)
-            console.log(this.state.listOfGuilds)
             //console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
             //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
         });
