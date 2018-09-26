@@ -21,10 +21,11 @@ class ListServerContainer extends Component{
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === server) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive];
+                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].tag === user) {
-                        // This kicks the user from the discord server
-                        //userInSingleGuild[x].kick();     TODO: Lets remove this from comments once we are done
+                        // This kicks the user from the discord serverr
+                        //userInSingleGuildMemberObject[x].kick();
                         userInSingleGuild.splice(x, 1);
                     }
                 }
@@ -42,12 +43,13 @@ class ListServerContainer extends Component{
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === server) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive];
-                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
+                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
+                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned];
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].tag === user) {
                         // This kicks the user from the discord server
-                        //userInSingleGuild[x].ban();     TODO: Lets remove this from comments once we are done
                         userBannedInSingleGuild.push(userInSingleGuild[x]);
+                        //userInSingleGuildMemberObject[x].ban();
                         userInSingleGuild.splice(x, 1);
                     }
                 }

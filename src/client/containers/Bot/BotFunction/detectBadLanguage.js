@@ -14,6 +14,7 @@ class detectBadLanguage extends Component{
         if(msg){
             if(listOfBannedWords.indexOf(msg.contentMsg) > -1){
                 console.log(`User ${msg.userMsg.tag} use bad words`)
+                this.props.handleKickUserByBot(msg.userMsg.tag)
             }
         }
         return null;
