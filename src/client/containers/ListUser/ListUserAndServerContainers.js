@@ -20,9 +20,7 @@ class ListUserContainers extends Component{
 
     render(){
         const iconLoading = <Icon type="loading" style={{ fontSize: 40 }} spin />;
-        const {listOfBannedWords} = this.state;
         const {infoFromDiscord} = this.props;
-
         if(infoFromDiscord){
             return (
                 <div>

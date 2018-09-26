@@ -9,6 +9,20 @@ class connectionToDiscord extends Component {
             listOfGuilds:null
         }
     }
+
+    /*shouldComponentUpdate(nextProps,nextState){
+        if(this.state.listOfGuilds){
+            for(let i = 0; i<this.state.listOfGuilds.length;i++){
+                if(this.state.listOfGuilds[i].usersActive.length !== nextState.listOfGuilds[i].usersActive.length){
+                    return true
+                }
+            }
+        } else {
+            return true;
+        }
+    }
+    */
+
     componentDidMount(){
         const Discord = require('discord.js');
         const client = new Discord.Client();
@@ -58,6 +72,8 @@ class connectionToDiscord extends Component {
 
         client.on('message', msg => {
             this.handleReceiveMsg(msg);
+            console.log(msg)
+            console.log(this.state.listOfGuilds)
             //console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
             //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
         });
@@ -68,13 +84,15 @@ class connectionToDiscord extends Component {
         this.setState({
             msgInfo: {
                 userMsg: event.author,
-                contentMsg: event.content
+                contentMsg: event.content,
+                serverId: event.channel.guild.id
             }
         });
     };
 
     render(){
         const {listOfGuilds,msgInfo,client} = this.state;
+        console.log(listOfGuilds)
         if(!listOfGuilds){
             return (
                 <Fragment>
@@ -91,6 +109,7 @@ class connectionToDiscord extends Component {
                     />
                     <BotFunctions
                         msg = {msgInfo}
+                        infoFromDiscord={listOfGuilds}
                     />
                 </Fragment>
             );
