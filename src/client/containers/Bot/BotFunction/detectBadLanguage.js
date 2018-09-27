@@ -30,6 +30,9 @@ class detectBadLanguage extends Component{
             if(this.state[userTag] > 3) {
                 this.props.handleKickUserByBot(userTag)
             }
+            this.setState({
+                [userTag]: 1
+            })
         })
     };
 
