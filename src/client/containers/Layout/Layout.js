@@ -10,9 +10,9 @@ import ConnectionToDiscord from '../Auth/connectionToDiscord'
 
 class Layout extends Component{
 
-    /*shouldComponentUpdate(nextProps){
+    shouldComponentUpdate(nextProps){
         return this.props.location.pathname !== nextProps.location.pathname
-    }*/
+    }
     render(){
         return(
             <div>
