@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Form, Icon, Input, Button } from 'antd';
 import './login.css';
-import Register from './register'
 
 const FormItem = Form.Item;
 
-class Login extends React.Component {
+class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.history.push('/main');
       }
     });
   }
@@ -44,17 +43,13 @@ class Login extends React.Component {
             </FormItem>
           </Form>
         </div>
-        <Router>
           <div>
             <Link to="/register">Register</Link>
-            <Route path="/register" component={Register} />
           </div>
-        </Router>
         <div>
           <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
         </div>
       </div>
-      //<Route path="/register" component={Register} />
     );
   }
 }

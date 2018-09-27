@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
 import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
@@ -14,6 +13,7 @@ class Register extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                this.props.history.push('/');
             }
         });
     }
