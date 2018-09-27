@@ -1,11 +1,9 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem'
-import {NavLink,Link} from 'react-router-dom'
 import './NavigationItems.css';
-import { Menu, Dropdown } from 'antd';
 
 const navigationItems = ( props ) => {
-    const menu = (
+    /*const menu = (
         <Menu className="account-dropdown">
             <Menu.Item>
                 <NavLink to={`${props.match.url}/user-profile`}>Profile</NavLink>
@@ -18,7 +16,7 @@ const navigationItems = ( props ) => {
                 <NavLink to="/">Log out</NavLink>
             </Menu.Item>
         </Menu>
-    );
+    );*/
     return (
         <ul className="NavigationItems">
             <NavigationItem link={`${props.match.url}/servers`}>
@@ -26,24 +24,20 @@ const navigationItems = ( props ) => {
                     SERVERS
                 </div>
             </NavigationItem>
-            <NavigationItem link={`${props.match.url}/account`}>
+            <NavigationItem link={`${props.match.url}/bot`}>
                 <div className="content-navigation">
-                    N/A
+                    BOT
                 </div>
             </NavigationItem>
-            <NavigationItem link={`${props.match.url}/account`}>
+            <NavigationItem link={`${props.match.url}/soundboard`}>
                 <div className="content-navigation">
-                    N/A
+                    SOUNDBOARD
                 </div>
             </NavigationItem>
-            <NavigationItem link={`${props.match.url}/account`}>
-                <Dropdown overlay={menu} trigger={['click']}>
-                    <div style={{height: '3em'}}>
-                        <div href="#" className="content-navigation-dropdown">
-                            ACCOUNT
-                        </div>
-                    </div>
-                </Dropdown>
+            <NavigationItem link="/">
+                <div className="content-navigation">
+                    LOG OUT
+                </div>
             </NavigationItem>
         </ul>
     );
