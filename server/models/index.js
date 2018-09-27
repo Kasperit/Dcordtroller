@@ -13,3 +13,4 @@ mongoose.connect(
 
 module.exports.User = require("./user");
 module.exports.Bot = require("./bot");
+module.exports.BlackListWord = require("./blackListWord");
