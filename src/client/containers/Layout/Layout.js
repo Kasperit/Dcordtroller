@@ -16,13 +16,14 @@ class Layout extends Component{
     render(){
         return(
             <div>
-                <BrowserRouter>
                     <div className="App">
                         <UpdateBlocker>
-                            <HeaderBar/>
+                            <HeaderBar
+                                {...this.props}
+                            />
                         </UpdateBlocker>
                         <Switch>
-                            <Route key={window.location.href} path="/servers" render={(props) =>  (
+                            <Route key={window.location.href} path={`${this.props.match.url}/servers`} render={(props) =>  (
                                 <ContentWeb
                                     {...props}
                                     title="Servers"
@@ -39,7 +40,6 @@ class Layout extends Component{
                             <FooterBar/>
                         </UpdateBlocker>
                     </div>
-                </BrowserRouter>
             </div>
         )
     }

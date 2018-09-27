@@ -23,6 +23,7 @@ class connectionToDiscord extends Component {
     }
     */
 
+
     componentDidMount(){
         const Discord = require('discord.js');
         const client = new Discord.Client();
@@ -108,6 +109,7 @@ class connectionToDiscord extends Component {
             return (
                 <Fragment>
                     <Layout
+                        {...this.props}
                         infoFromDiscord={listOfGuilds}
                     />
                     <BotFunctions
