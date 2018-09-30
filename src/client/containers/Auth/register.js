@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Input, Button } from 'antd';
+import './register.css';
 
 const FormItem = Form.Item;
 
@@ -67,51 +68,56 @@ class Register extends React.Component {
         };
 
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <FormItem
-                    {...formItemLayout}
-                    label="Username"
-                >
-                    {getFieldDecorator('userName', {
-                        rules: [{
-                            required: true, message: 'Please input your username!',
-                        }],
-                    })(
-                        <Input />
-                    )}
-                </FormItem>
-                <FormItem
-                    {...formItemLayout}
-                    label="Password"
-                >
-                    {getFieldDecorator('password', {
-                        rules: [{
-                            required: true, message: 'Please input your password!',
-                        }, {
-                            validator: this.validateToNextPassword,
-                        }],
-                    })(
-                        <Input type="password" />
-                    )}
-                </FormItem>
-                <FormItem
-                    {...formItemLayout}
-                    label="Confirm Password"
-                >
-                    {getFieldDecorator('confirm', {
-                        rules: [{
-                            required: true, message: 'Please confirm your password!',
-                        }, {
-                            validator: this.compareToFirstPassword,
-                        }],
-                    })(
-                        <Input type="password" onBlur={this.handleConfirmBlur} />
-                    )}
-                </FormItem>
-                <FormItem {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">Register</Button>
-                </FormItem>
-            </Form>
+            <div className="form">
+                <Form onSubmit={this.handleSubmit} className="register-form">
+                    <FormItem
+                        {...formItemLayout}
+                        label="Username"
+                        className="usernameregister"
+                    >
+                        {getFieldDecorator('userName', {
+                            rules: [{
+                                required: true, message: 'Please input your username!',
+                            }],
+                        })(
+                            <Input />
+                        )}
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label="Password"
+                        className="passwordregister"
+                    >
+                        {getFieldDecorator('password', {
+                            rules: [{
+                                required: true, message: 'Please input your password!',
+                            }, {
+                                validator: this.validateToNextPassword,
+                            }],
+                        })(
+                            <Input type="password" />
+                        )}
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label="Confirm Password"
+                        className="confirm"
+                    >
+                        {getFieldDecorator('confirm', {
+                            rules: [{
+                                required: true, message: 'Please confirm your password!',
+                            }, {
+                                validator: this.compareToFirstPassword,
+                            }],
+                        })(
+                            <Input type="password" onBlur={this.handleConfirmBlur} />
+                        )}
+                    </FormItem>
+                    <FormItem {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit" className="register-form-button">Register</Button>
+                    </FormItem>
+                </Form>
+            </div>
         );
     }
 }

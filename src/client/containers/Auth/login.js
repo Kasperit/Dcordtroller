@@ -19,17 +19,17 @@ class Login extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
         <div>
           <Form onSubmit={this.handleSubmit} className="login-form">
-            <FormItem>
+            <h1>DCordtroller</h1>
+            <FormItem className="username">
               {getFieldDecorator('userName', {
                 rules: [{ required: true, message: 'Please input your username!' }],
               })(
                 <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
               )}
             </FormItem>
-            <FormItem>
+            <FormItem className="password">
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
               })(
@@ -41,15 +41,14 @@ class Login extends Component {
                 Log in
               </Button>
             </FormItem>
+            <div className="register">
+              <Link to="/register">Register</Link>
+            </div>
+            <div className="botinvite">
+              <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
+            </div>
           </Form>
         </div>
-          <div>
-            <Link to="/register">Register</Link>
-          </div>
-        <div>
-          <a target='_blank' href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8">Invite Bot</a>
-        </div>
-      </div>
     );
   }
 }
