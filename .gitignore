@@ -21,6 +21,12 @@
 .env.test.local
 .env.production.local
 
+#server
+/server/.env
+/server/.eslintrc
+/server/.gitignore
+/server/.git
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -1,58 +1,64 @@
-const jwt = require('jsonwebtoken');
-const db = require('../models');
+const jwt = require("jsonwebtoken");
+const db = require("../models");
 
-exports.signin = async function (req, res, next) {
+exports.signin = async function(req, res, next) {
   try {
     const user = await db.User.findOne({
-      email: req.body.email,
+      username: req.body.username
     });
-    const { id, username } = user;
+    const { id, username, email } = user;
     const isMatch = await user.comparePassword(req.body.password);
     if (isMatch) {
-      const token = jwt.sign({
-        id,
-        username,
-      },
-      process.env.SECRET_KEY);
+      const token = jwt.sign(
+        {
+          id,
+          username
+        },
+        process.env.SECRET_KEY
+      );
       return res.status(200).json({
         id,
         username,
-        token,
+        email,
+        token
       });
     }
     return next({
       status: 400,
-      message: 'Incorrect password!',
+      message: "Incorrect password!"
     });
   } catch (err) {
     return next({
       status: 400,
-      message: 'Invalid email!',
+      message: "Invalid username!"
     });
   }
 };
 
-exports.signup = async function (req, res, next) {
+exports.signup = async function(req, res, next) {
   try {
     const user = await db.User.create(req.body);
-    const { id, username } = user;
-    const token = jwt.sign({
-      id,
-      username,
-    },
-    process.env.SECRET_KEY);
+    const { id, username, email } = user;
+    const token = jwt.sign(
+      {
+        id,
+        username
+      },
+      process.env.SECRET_KEY
+    );
     return res.status(200).json({
       id,
       username,
-      token,
+      email,
+      token
     });
   } catch (err) {
     if (err.code === 11000) {
-      err.message = 'Sorry, that username and/or email is taken!';
+      err.message = "Sorry, that username and/or email is taken!";
     }
     return next({
       status: 400,
-      message: err.message,
+      message: err.message
     });
   }
 };

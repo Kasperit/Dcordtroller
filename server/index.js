@@ -7,7 +7,7 @@ const errorHandler = require("./handlers/error");
 const authRoutes = require("./routes/auth");
 const botRoutes = require("./routes/bot");
 
-const PORT = 8081;
+const PORT = process.env.PORT || 8081;
 
 app.use(cors());
 app.use(bodyParser.json());
