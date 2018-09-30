@@ -8,12 +8,9 @@ const botSchema = new mongoose.Schema({
     require: true,
     unique: true
   },
-  blackListWords: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "BlackListWord"
-    }
-  ]
+  blackListWords: {
+    type: [String]
+  }
 });
 
 const Bot = mongoose.model("Bot", botSchema);
