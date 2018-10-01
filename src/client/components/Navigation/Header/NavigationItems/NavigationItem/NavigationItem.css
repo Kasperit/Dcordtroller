@@ -36,3 +36,10 @@
     background-color: darkgrey;
     color:black
 }
+
+.NavigationItemActive {
+    color:black;
+    font-weight: bold;
+    background-color: darkgray;
+    cursor: pointer;
+}
