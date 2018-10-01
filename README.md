@@ -2,4 +2,4 @@
 
 `npm start` to run.
 
-for soundboard, go to soundboard folder and `node music.js`
+for soundboard, go to soundboard folder and `npm install` and `node music.js`
