@@ -11,8 +11,8 @@ const {
 
 router.post("/", createBot);
 router.get("/", getAllBot);
-router.get("/:bot_id", getBot);
-router.delete("/:bot_id", deleteBot);
-router.patch("/:bot_id", patchBot);
+router.get("/:bot_name", getBot);
+router.delete("/:bot_name", deleteBot);
+router.patch("/:bot_name", patchBot);
 
 module.exports = router;

@@ -31,7 +31,9 @@ exports.getAllBot = async function(req, res, next) {
 
 exports.getBot = async function(req, res, next) {
   try {
-    const bot = await db.Bot.findById(req.params.bot_id);
+    const bot = await db.Bot.findOne({
+      name: req.params.bot_name
+    });
     return res.status(200).json(bot);
   } catch (err) {
     return next(err);
@@ -40,7 +42,9 @@ exports.getBot = async function(req, res, next) {
 
 exports.deleteBot = async function(req, res, next) {
   try {
-    const bot = await db.Bot.findById(req.params.bot_id);
+    const bot = await db.Bot.findOne({
+      name: req.params.bot_name
+    });
     await bot.remove();
     return res.status(200).json(bot);
   } catch (err) {
@@ -50,7 +54,9 @@ exports.deleteBot = async function(req, res, next) {
 
 exports.patchBot = async function(req, res, next) {
   try {
-    const bot = await db.Bot.findById(req.params.bot_id);
+    const bot = await db.Bot.findOne({
+      name: req.params.bot_name
+    });
     if (req.body._id) {
       delete req.body._id;
     }
