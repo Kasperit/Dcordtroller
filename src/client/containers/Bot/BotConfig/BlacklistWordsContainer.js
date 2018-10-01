@@ -1,52 +1,91 @@
 import React, {Component} from 'react';
-import { Select,Button } from 'antd';
+import { Select,Button,Spin } from 'antd';
+import axios from 'axios'
 const Option = Select.Option;
 class BlacklistWords extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            disabled: true
+            disabled: true,
+            editBtnDisabled: false,
+            saveBtnDisabled: true,
+            blackListWords:[]
         }
     }
+    updatedBlackWords=[];
+
     handleChange = (value) => {
-        console.log(`Selected: ${value}`);
+        this.updatedBlackWords = value
     };
 
     handleEdit = () => {
         this.setState({
-            disabled: false
+            disabled: false,
+            editBtnDisabled: true,
+            saveBtnDisabled: false
         })
     };
 
     handleSave = () => {
-        this.setState({
-            disabled: true
-        })
+        let blackListWords = {
+            blackListWords: this.updatedBlackWords.length > 0 ? this.updatedBlackWords : this.props.listOfBannedWords
+        };
+        axios.patch('https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617',blackListWords)
+            .then(res => {
+                this.props.newListOfBannedWords(res.data.blackListWords)
+                this.setState({
+                    disabled: true,
+                    editBtnDisabled: false,
+                    saveBtnDisabled: true,
+                    blackListWords: res.data.blackListWords
+                })
+            })
     }
     render() {
-        const {disabled} = this.state;
+        const {disabled,editBtnDisabled,saveBtnDisabled,blackListWords} = this.state;
+        const {listOfBannedWords} = this.props
         const children = [];
-        for (let i = 10; i < 36; i++) {
-            children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+        for (let i = 0; i < listOfBannedWords.length; i++) {
+            children.push(<Option key={listOfBannedWords[i]}>{listOfBannedWords[i]}</Option>);
         }
-        return (
-            <div>
-                <Button onClick={() => this.handleEdit()}>Edit</Button>
-                <Button onClick ={() => this.handleSave()}>Save</Button>
+        if(listOfBannedWords.length>0){
+            return (
+                <div>
+                    <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
+                    <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save</Button>
+                    <br /><br />
+                    <Select
+                        mode="tags"
+                        size={"large"}
+                        placeholder="Please select"
+                        defaultValue={listOfBannedWords}
+                        onChange={this.handleChange}
+                        style={{ width: '50%' }}
+                        disabled = {disabled}
+                    >
+                        {children}
+                    </Select>
+                </div>
+            );
+        } else {
+            return <div>
+                <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
+                <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save</Button>
                 <br /><br />
                 <Select
-                    mode="multiple"
+                    mode="tags"
                     size={"large"}
                     placeholder="Please select"
-                    defaultValue={['a10', 'c12']}
+                    defaultValue={[]}
                     onChange={this.handleChange}
-                    style={{ width: '100%' }}
+                    style={{ width: '50%' }}
                     disabled = {disabled}
                 >
                     {children}
                 </Select>
             </div>
-        );
+        }
+
     }
 }
 export default BlacklistWords;

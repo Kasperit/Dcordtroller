@@ -2,29 +2,22 @@ import React, {Component,Fragment} from 'react';
 import './connection.css'
 import Layout from '../Layout/Layout'
 import BotFunctions from '../Bot/BotFunctions'
+import axios from 'axios'
 class connectionToDiscord extends Component {
     constructor(props){
         super(props);
         this.state = {
-            listOfGuilds:null
+            listOfGuilds:null,
+            listOfBannedWords:[]
         }
     }
-
-    /*shouldComponentUpdate(nextProps,nextState){
-        if(this.state.listOfGuilds){
-            for(let i = 0; i<this.state.listOfGuilds.length;i++){
-                if(this.state.listOfGuilds[i].usersActive.length !== nextState.listOfGuilds[i].usersActive.length){
-                    return true
-                }
-            }
-        } else {
-            return true;
-        }
-    }
-    */
-
-
     componentDidMount(){
+        axios.get(`https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617`)
+            .then(res => {
+                this.setState({
+                    listOfBannedWords: res.data.blackListWords
+                })
+            })
         const Discord = require('discord.js');
         const client = new Discord.Client();
         client.login('NDg2NDgzMTc3NjI0MzA1Njc0.DnEGnA.0e9GJA_nkFkXLTbxePjfaqkrNIM');
@@ -96,7 +89,7 @@ class connectionToDiscord extends Component {
     };
 
     render(){
-        const {listOfGuilds,msgInfo,client} = this.state;
+        const {listOfGuilds,msgInfo,client,listOfBannedWords} = this.state;
         if(!listOfGuilds){
             return (
                 <Fragment>
@@ -112,10 +105,13 @@ class connectionToDiscord extends Component {
                         {...this.props}
                         infoFromDiscord={listOfGuilds}
                         client = {client}
+                        newListOfBannedWords={(listOfBannedWords) => this.setState({listOfBannedWords:listOfBannedWords})}
+                        listOfBannedWords = {listOfBannedWords}
                     />
                     <BotFunctions
                         msg = {msgInfo}
                         infoFromDiscord={listOfGuilds}
+                        listOfBannedWords = {listOfBannedWords}
                     />
                 </Fragment>
             );

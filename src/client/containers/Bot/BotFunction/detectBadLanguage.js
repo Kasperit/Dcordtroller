@@ -1,14 +1,13 @@
 import React,{Component} from 'react'
+import axios from 'axios'
 class detectBadLanguage extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            listOfBannedWords: ["TEST","TEST1"],
-        }
     }
 
     shouldComponentUpdate(nextProps,nextState){
-        return !(this.props.msg && this.props.msg.contentMsg === nextProps.msg.contentMsg);
+        return !(this.props.msg && this.props.msg.contentMsg === nextProps.msg.contentMsg
+        && this.props.listOfBannedWords === nextProps.listOfBannedWords);
     }
 
     componentDidMount(){
@@ -37,9 +36,8 @@ class detectBadLanguage extends Component{
     };
 
     render(){
-        const {msg,listOfGuilds} = this.props;
-        let {listOfBannedWords} = this.state;
-
+        const {msg,listOfGuilds,listOfBannedWords} = this.props;
+        let listOfBannedWordsClone = [...listOfBannedWords]
         if(msg){
             for(let i = 0; i< listOfGuilds.length;i++){
                 for(let j = 0; j< listOfGuilds[i].serverAdmins.length; j++){
@@ -52,9 +50,9 @@ class detectBadLanguage extends Component{
             let msgContent = msg.contentMsg.slice(0);
             let msgContentArray = msgContent.split(' ');
             msgContentArray = msgContentArray.map(ele => ele.toLowerCase());
-            listOfBannedWords =listOfBannedWords.map(ele => ele.toLowerCase());
+            listOfBannedWordsClone =listOfBannedWordsClone.map(ele => ele.toLowerCase());
             for(let i = 0; i< msgContentArray.length; i++){
-                if(listOfBannedWords.indexOf(msgContentArray[i]) > -1){
+                if(listOfBannedWordsClone.indexOf(msgContentArray[i]) > -1){
                     this.state[msg.userMsg.tag] === 1 ?
                         channelId.send(`Warning! User ${msg.userMsg} please do not use bad words. This is the ${this.state[msg.userMsg.tag]}st time`) :
                         this.state[msg.userMsg.tag] === 2 ?
