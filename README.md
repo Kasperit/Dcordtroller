@@ -7,6 +7,6 @@
  SECRET_KEY=<YOUR_SECRET_KEY>
  DB_HOST=<YOUR_MONGODB_HOST>
  ```
->Note: No space before and after `=`
+>Note: No space before and after `=` <br>
 >SECRET_KEY is a random string by your own, eg. `adkjs324nbjsb&+jhsdbf3b_jbkjb35n5bnm35bmnb5`
 - `npm start` to run.
