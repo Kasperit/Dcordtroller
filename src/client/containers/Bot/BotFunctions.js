@@ -33,6 +33,7 @@ class BotFunctions extends Component{
                 msg = {this.props.msg}
                 listOfGuilds = {this.props.infoFromDiscord}
                 handleKickUserByBot = {(userTag) => this.handleKickUserByBot(userTag)}
+                listOfBannedWords = {this.props.listOfBannedWords}
             />
         )
     }

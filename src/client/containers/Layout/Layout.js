@@ -56,6 +56,7 @@ class Layout extends Component {
                                 <BotConfigContainer
                                     infoFromDiscord = {this.props.infoFromDiscord}
                                     client = {this.props.client}
+                                    newListOfBannedWords={(listOfBannedWords) => this.props.newListOfBannedWords(listOfBannedWords)}
                                     {...props}
                                 />
                             </ContentWeb>
