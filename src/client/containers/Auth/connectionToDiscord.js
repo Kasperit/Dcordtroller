@@ -106,6 +106,7 @@ class connectionToDiscord extends Component {
                         infoFromDiscord={listOfGuilds}
                         client = {client}
                         newListOfBannedWords={(listOfBannedWords) => this.setState({listOfBannedWords:listOfBannedWords})}
+                        listOfBannedWords = {listOfBannedWords}
                     />
                     <BotFunctions
                         msg = {msgInfo}

@@ -14,18 +14,7 @@ class BlacklistWords extends React.Component {
     }
     updatedBlackWords=[];
 
-    componentDidMount(){
-        axios.get('https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617')
-            .then(res => {
-                this.setState({
-                    blackListWords: res.data.blackListWords,
-                    botName: res.data.botName,
-                    botId: res.data.botId
-                })
-            })
-    }
     handleChange = (value) => {
-        console.log(value)
         this.updatedBlackWords = value
     };
 
@@ -51,11 +40,12 @@ class BlacklistWords extends React.Component {
     }
     render() {
         const {disabled,editBtnDisabled,saveBtnDisabled,blackListWords} = this.state;
+        const {listOfBannedWords} = this.props
         const children = [];
-        for (let i = 0; i < blackListWords.length; i++) {
-            children.push(<Option key={blackListWords[i]}>{blackListWords[i]}</Option>);
+        for (let i = 0; i < listOfBannedWords.length; i++) {
+            children.push(<Option key={listOfBannedWords[i]}>{listOfBannedWords[i]}</Option>);
         }
-        if(blackListWords.length > 0){
+        if(listOfBannedWords.length>0){
             return (
                 <div>
                     <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
@@ -65,9 +55,9 @@ class BlacklistWords extends React.Component {
                         mode="tags"
                         size={"large"}
                         placeholder="Please select"
-                        defaultValue={blackListWords}
+                        defaultValue={listOfBannedWords}
                         onChange={this.handleChange}
-                        style={{ width: '100%' }}
+                        style={{ width: '50%' }}
                         disabled = {disabled}
                     >
                         {children}
@@ -75,7 +65,22 @@ class BlacklistWords extends React.Component {
                 </div>
             );
         } else {
-            return <Spin/>
+            return <div>
+                <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
+                <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save</Button>
+                <br /><br />
+                <Select
+                    mode="tags"
+                    size={"large"}
+                    placeholder="Please select"
+                    defaultValue={[]}
+                    onChange={this.handleChange}
+                    style={{ width: '50%' }}
+                    disabled = {disabled}
+                >
+                    {children}
+                </Select>
+            </div>
         }
 
     }
