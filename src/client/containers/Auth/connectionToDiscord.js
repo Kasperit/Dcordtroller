@@ -63,7 +63,7 @@ class connectionToDiscord extends Component {
 
             this.setState({
                 listOfGuilds: listOfGuilds,
-                client: client.user.tag
+                client: client
             });
         });
 
@@ -96,7 +96,7 @@ class connectionToDiscord extends Component {
     };
 
     render(){
-        const {listOfGuilds,msgInfo} = this.state;
+        const {listOfGuilds,msgInfo,client} = this.state;
         if(!listOfGuilds){
             return (
                 <Fragment>
@@ -111,6 +111,7 @@ class connectionToDiscord extends Component {
                     <Layout
                         {...this.props}
                         infoFromDiscord={listOfGuilds}
+                        client = {client}
                     />
                     <BotFunctions
                         msg = {msgInfo}

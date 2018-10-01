@@ -6,7 +6,6 @@
     width: 150px;
     text-align: center;
     height:3em;
-    border-left: 1px groove;
 }
 .NavigationItem :active,
 .NavigationItem :hover{
@@ -17,7 +16,6 @@
 }
 
 .NavigationItem:last-child{
-    border-right: 1px groove;
 
 }
 
