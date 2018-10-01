@@ -85,20 +85,22 @@ class ListChannelContainer extends Component{
         console.log(`UnBan ${user} in server ${server}`)
     }*/
 
+    handlePlayMusic = (server) => {
+
+    }
+
 
     render(){
         let {listOfGuilds,server} = this.state;
-        let listOfUser = null;
+        let listOfVoice = null;
         let listServer = [];
         if(server){
-            listOfUser =
+            listOfVoice =
                 <ListVoiceChannel
                     listOfGuilds={listOfGuilds}
                     server={server}
-                    handleKickUser={(user, server) => this.handleKickUser(user, server)}
-                    handleBanUser={(user, server) => this.handleBanUser(user, server)}
+                    handlePlayMusic={(server) => this.handlePlayMusic(server)}
                     closeUserList = {() => this.setState({server:null})}
-                    handleUnBanUser = {(user,server) => this.handleUnBanUser(user,server)}
                 />
         }
         for(let i = 0; i< listOfGuilds.length; i++){
@@ -112,7 +114,7 @@ class ListChannelContainer extends Component{
                     server={server}
                     chooseServer = {(server) => this.setState({server})}
                 />
-                {listOfUser}
+                {listOfVoice}
                 </Row>
             </Fragment>
         )

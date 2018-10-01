@@ -1,11 +1,12 @@
-import React,{Component,Fragment} from 'react'
-import {List,Card,Button,Icon,Col,Modal} from 'antd'
+import React, { Component, Fragment } from 'react'
+import { List, Card, Button, Icon, Col, Modal } from 'antd'
 import './ListVoiceChannel.css'
+import ListVoiceChannelActive from './ListVoiceChannelActive'
 
 
 class ListVoiceChannel extends Component {
-    /*state = {
-        key: 'activePlayers',
+    state = {
+        key: 'voiceChannels',
     };
 
     onTabChange = (key, type) => {
@@ -13,35 +14,24 @@ class ListVoiceChannel extends Component {
     };
 
     tabList = [{
-        key: 'activePlayers',
-        tab: <div className="activePlayer-tab">Active players</div>,
-    }, {
-        key: 'bannedPlayers',
-        tab: <div className="bannedPlayer-tab">Banned players</div>,
+        key: 'voiceChannels',
+        tab: <div className="activePlayer-tab">Voice Channels</div>,
     }];
 
-
-*/
     render() {
-        /*const contentList = {
-            activePlayers: <ListUserActive
+        const contentList = {
+            voiceChannels: <ListVoiceChannelActive
                 listOfGuilds={this.props.listOfGuilds}
                 server={this.props.server}
-                handleKickUser={(item,server) => this.props.handleKickUser(item, server)}
-                handleBanUser={(item,server) => this.props.handleBanUser(item, server)}
+                handlePlayMusic={(server) => this.props.handlePlayMusic(server)}
             />,
-            bannedPlayers: <ListUserBan
-                listOfGuilds={this.props.listOfGuilds}
-                server={this.props.server}
-                handleUnBanUser={(item,server) => this.props.handleUnBanUser(item, server)}
-            />,
-        };*/
+        };
         return (
             <Col span={14}>
                 <Card
                     title="Voice Channels"
-                    headStyle={{backgroundColor:'#C1BBBC',textAlign:'center'}}
-                    bodyStyle={{height: '438px', overflowY: 'scroll'}}
+                    headStyle={{ backgroundColor: '#C1BBBC', textAlign: 'center' }}
+                    bodyStyle={{ height: '438px', overflowY: 'scroll' }}
                     extra={
                         <Icon
                             type="close"
@@ -49,8 +39,11 @@ class ListVoiceChannel extends Component {
                             className="close-btn"
                             onClick={() => this.props.closeUserList()}
                         />}
+                    tabList={this.tabList}
+                    activeTabKey={this.state.key}
+                    onTabChange={(key) => { this.onTabChange(key, 'key'); }}
                 >
-                <Button>Play Sound</Button>
+                    {contentList[this.state.key]}
                 </Card>
             </Col>
         );
