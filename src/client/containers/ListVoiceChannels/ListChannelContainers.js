@@ -3,7 +3,7 @@ import {Col,Row} from 'antd'
 import ListServer from '../../components/ListServer/ListServer'
 import ListVoiceChannel from '../../components/ListVoiceChannel/ListVoiceChannel'
 
-class ListServerContainer extends Component{
+class ListChannelContainer extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -119,4 +119,4 @@ class ListServerContainer extends Component{
     }
 }
 
-export default ListServerContainer;
+export default ListChannelContainer;

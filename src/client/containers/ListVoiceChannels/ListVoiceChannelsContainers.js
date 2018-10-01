@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import ListChannelContainer from './ListChannelContainers'
 import {Spin,Icon,Col,Row} from 'antd'
 
-class ListUserContainers extends Component{
+class ListVoiceChannelContainers extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -42,5 +42,5 @@ class ListUserContainers extends Component{
     }
 }
 
-export default ListUserContainers;
+export default ListVoiceChannelContainers;
 
