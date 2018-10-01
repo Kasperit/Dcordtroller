@@ -31,7 +31,7 @@ class ListVoiceChannel extends Component {
                 <Card
                     title="Voice Channels"
                     headStyle={{ backgroundColor: '#C1BBBC', textAlign: 'center' }}
-                    bodyStyle={{ height: '438px', overflowY: 'scroll' }}
+                    bodyStyle={{ height: '430px', overflowY: 'scroll' }}
                     extra={
                         <Icon
                             type="close"

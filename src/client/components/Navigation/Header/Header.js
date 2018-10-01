@@ -8,12 +8,12 @@ const headerBar = (props) => {
         <div className={'header'}>
             <div className='logo'>
                 <NavLink to="/main">
-                    <h2>Dcordtroller</h2>
+                    <h1>Dcordtroller</h1>
                 </NavLink>
             </div>
-            <NavigationItems
-                {...props}
-            />
+            <div className="nav-bar-container">
+                <NavigationItems {...props}/>
+            </div>
         </div>
     )
 };

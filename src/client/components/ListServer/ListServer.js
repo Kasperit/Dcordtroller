@@ -9,7 +9,7 @@ const ListServer = (props) => {
             <Card
                 title="Servers"
                 headStyle={{backgroundColor:'#C1BBBC',textAlign:'center',height:95}}
-                bodyStyle={{height:438}}
+                bodyStyle={{height:430}}
             >
                 <List
 

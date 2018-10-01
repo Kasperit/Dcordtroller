@@ -3,7 +3,7 @@
     top:0;
     box-sizing: border-box;
     display: block;
-    width: 150px;
+    width: 180px;
     text-align: center;
     height:3em;
 }
@@ -15,9 +15,6 @@
     cursor: pointer;
 }
 
-.NavigationItem:last-child{
-
-}
 
 .NavigationItem-active {
     text-align: center;
@@ -28,13 +25,15 @@
     height:100%;
     box-sizing: border-box;
     display: block;
+    border-radius: 10px;
 }
 
 .NavigationItem-active :hover,
 .NavigationItem-active :active,
 .NavigationItem-active ::selection{
     background-color: darkgrey;
-    color:black
+    color:black;
+    border-radius: 10px;
 }
 
 .NavigationItemActive {
@@ -42,4 +41,6 @@
     font-weight: bold;
     background-color: darkgray;
     cursor: pointer;
+    border-radius: 10px;
 }
+
