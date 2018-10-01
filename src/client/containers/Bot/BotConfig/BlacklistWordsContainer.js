@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Select,Button,Spin } from 'antd';
+import { Select,Button,Icon } from 'antd';
 import axios from 'axios'
 const Option = Select.Option;
 class BlacklistWords extends React.Component {
@@ -51,8 +51,8 @@ class BlacklistWords extends React.Component {
         if(listOfBannedWords.length>0){
             return (
                 <div>
-                    <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
-                    <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save</Button>
+                    <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit <Icon type="edit" theme="outlined" /></Button>
+                    <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save <Icon type="save" theme="outlined" /></Button>
                     <br /><br />
                     <Select
                         mode="tags"
@@ -69,8 +69,8 @@ class BlacklistWords extends React.Component {
             );
         } else {
             return <div>
-                <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit</Button>
-                <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save</Button>
+                <Button disabled={editBtnDisabled} onClick={() => this.handleEdit()}>Edit <Icon type="edit" theme="outlined" /></Button>
+                <Button disabled={saveBtnDisabled} onClick ={() => this.handleSave()}>Save <Icon type="save" theme="outlined" /></Button>
                 <br /><br />
                 <Select
                     mode="tags"

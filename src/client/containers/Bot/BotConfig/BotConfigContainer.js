@@ -9,8 +9,8 @@ class BotConfigContainer extends Component {
     render(){
         return (
             <div>
-                <p>You are logged in as BOT {this.props.client.user.tag}</p>
-                <p>Config blacklist words:</p>
+                <p style = {{fontSize:'1.2em',fontWeight:'bold'}}>Logged in as BOT {this.props.client.user.tag}</p>
+                <p style = {{fontSize:'1.2em',fontWeight:'bold'}}>Config blacklist words:</p>
                 <BlacklistWordsContainer
                     listOfBannedWords = {this.props.listOfBannedWords}
                     newListOfBannedWords={(listOfBannedWords) => this.props.newListOfBannedWords(listOfBannedWords)}
