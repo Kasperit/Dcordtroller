@@ -1,17 +1,17 @@
-import React, {Component,Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import './connection.css'
 import Layout from '../Layout/Layout'
 import BotFunctions from '../Bot/BotFunctions'
 import axios from 'axios'
 class connectionToDiscord extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            listOfGuilds:null,
-            listOfBannedWords:[]
+            listOfGuilds: null,
+            listOfBannedWords: []
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         axios.get(`https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617`)
             .then(res => {
                 this.setState({
@@ -25,15 +25,21 @@ class connectionToDiscord extends Component {
             console.log(`Logged in as ${client.user.tag}!`);
             let listOfGuilds = [];
             const listOfGuildsFormat = client.guilds.array();
-            for(let i = 0; i< listOfGuildsFormat.length; i++) {
+            for (let i = 0; i < listOfGuildsFormat.length; i++) {
                 let listOfMembersActive = [];
                 let listOfMembersBanned = [];
                 let listOfServerAdmins = [];
                 let listOfMemberObjects = [];
-                listOfGuildsFormat[i].fetchBans().then(function(users) {
+                let listOfGuildVoiceChannels = [];
+                listOfGuildsFormat[i].fetchBans().then(function (users) {
                     Array.from(users).forEach(e => {
                         listOfMembersBanned.push(e[1]);
                     });
+                });
+                listOfGuildsFormat[i].channels.array().forEach(element => {
+                    if (element.type == "voice") {
+                        listOfGuildVoiceChannels.push(element);
+                    }
                 });
                 for (let x = 0; x < listOfGuildsFormat[i].members.array().length; x++) {
                     if (listOfGuildsFormat[i].members.array()[x].permissions.has("KICK_MEMBERS")) {
@@ -47,6 +53,7 @@ class connectionToDiscord extends Component {
                         serverObject: listOfGuildsFormat[i],
                         server: listOfGuildsFormat[i].name,
                         serverAdmins: listOfServerAdmins,
+                        guildVoiceChannels: listOfGuildVoiceChannels,
                         usersActive: listOfMembersActive,
                         memberObjects: listOfMemberObjects,
                         usersBanned: listOfMembersBanned
@@ -68,7 +75,7 @@ class connectionToDiscord extends Component {
         });
 
         client.on('message', msg => {
-            this.handleReceiveMsg(msg,client);
+            this.handleReceiveMsg(msg, client);
             //console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
             //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
         });
@@ -76,7 +83,7 @@ class connectionToDiscord extends Component {
 
     }
 
-    handleReceiveMsg = (event,client) => {
+    handleReceiveMsg = (event, client) => {
         this.setState({
             msgInfo: {
                 userMsg: event.author,
@@ -88,13 +95,13 @@ class connectionToDiscord extends Component {
         });
     };
 
-    render(){
-        const {listOfGuilds,msgInfo,client,listOfBannedWords} = this.state;
-        if(!listOfGuilds){
+    render() {
+        const { listOfGuilds, msgInfo, client, listOfBannedWords } = this.state;
+        if (!listOfGuilds) {
             return (
                 <Fragment>
                     <div className="lds-css ng-scope">
-                        <div style={{width:"100%",height:"100%"}} className="lds-double-ring"><div></div><div></div></div>
+                        <div style={{ width: "100%", height: "100%" }} className="lds-double-ring"><div></div><div></div></div>
                     </div>
 
                 </Fragment>)
@@ -104,14 +111,14 @@ class connectionToDiscord extends Component {
                     <Layout
                         {...this.props}
                         infoFromDiscord={listOfGuilds}
-                        client = {client}
-                        newListOfBannedWords={(listOfBannedWords) => this.setState({listOfBannedWords:listOfBannedWords})}
-                        listOfBannedWords = {listOfBannedWords}
+                        client={client}
+                        newListOfBannedWords={(listOfBannedWords) => this.setState({ listOfBannedWords: listOfBannedWords })}
+                        listOfBannedWords={listOfBannedWords}
                     />
                     <BotFunctions
-                        msg = {msgInfo}
+                        msg={msgInfo}
                         infoFromDiscord={listOfGuilds}
-                        listOfBannedWords = {listOfBannedWords}
+                        listOfBannedWords={listOfBannedWords}
                     />
                 </Fragment>
             );

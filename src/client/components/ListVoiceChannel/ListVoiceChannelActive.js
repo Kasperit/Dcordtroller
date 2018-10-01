@@ -8,16 +8,14 @@ const ListVoiceChannelActive = (props) => {
     let listOfVoiceChannelsInServer = [];
 
     if (server) {
-        /*for (let i = 0; i < listOfGuilds.length; i++) {
+        console.log(listOfGuilds[0].guildVoiceChannels);
+        for (let i = 0; i < listOfGuilds.length; i++) {
             if (listOfGuilds[i].server === server) {
-                for (let x = 0; x < listOfGuilds[i].usersActive.length; x++) {
-                    if (listOfGuilds[i].serverAdmins.includes(listOfGuilds[i].usersActive[x])) 
-                        listOfAdminsInServer.push(listOfGuilds[i].usersActive[x]);
-                    else 
-                        listOfMembersInServer.push(listOfGuilds[i].usersActive[x]);
+                for (let x = 0; x < listOfGuilds[i].guildVoiceChannels.length; x++) {
+                    listOfVoiceChannelsInServer.push(listOfGuilds[i].guildVoiceChannels[x]);
                 }
             }
-        }*/
+        }
         return (
             <Fragment>
                 <h3 style={{textAlign:'center'}}>Voice Channels</h3>
@@ -29,11 +27,11 @@ const ListVoiceChannelActive = (props) => {
                     <List.Item
                         actions={
                             [
-                                <Button onClick={() => props.handlePlayMusic(props.server)}>Play Sound</Button>,
+                                <Button onClick={() => props.handlePlayMusic({item,server})}>Play Sound</Button>,
                             ]
                         }
                     >
-                        {item.tag} &nbsp;
+                        {item.name} &nbsp;
                         &nbsp; {item.bot ? <Tag color="blue">BOT</Tag>:null}
                     </List.Item>
                 )}

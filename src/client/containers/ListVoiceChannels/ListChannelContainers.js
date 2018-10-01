@@ -1,18 +1,18 @@
-import React,{Fragment,Component} from 'react'
-import {Col,Row} from 'antd'
+import React, { Fragment, Component } from 'react'
+import { Col, Row } from 'antd'
 import ListServer from '../../components/ListServer/ListServer'
 import ListVoiceChannel from '../../components/ListVoiceChannel/ListVoiceChannel'
 
-class ListChannelContainer extends Component{
-    constructor(props){
+class ListChannelContainer extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            server:null,
+            server: null,
             listOfGuilds: this.props.listOfGuilds
         }
     }
 
-    shouldComponentUpdate(nextProps,nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
         return !(this.state.server === nextState.server) || this.state.listOfGuilds !== nextState.listOfGuilds
     }
 
@@ -85,36 +85,45 @@ class ListChannelContainer extends Component{
         console.log(`UnBan ${user} in server ${server}`)
     }*/
 
-    handlePlayMusic = (server) => {
+    handlePlayMusic = (item) => {
+        let voiceChannelName = item.item.name;      // XD
+        let serverName = item.server;
 
+        let listOfGuilds = [...this.state.listOfGuilds];
+        for(let i = 0; i< listOfGuilds.length; i++) {
+            if(listOfGuilds[i].server === serverName) {
+                let generalObject = listOfGuilds[i].serverObject.channels.array()[1];
+                generalObject.send("!" + voiceChannelName + ":" + serverName);
+            }
+        }
     }
 
 
-    render(){
-        let {listOfGuilds,server} = this.state;
+    render() {
+        let { listOfGuilds, server } = this.state;
         let listOfVoice = null;
         let listServer = [];
-        if(server){
+        if (server) {
             listOfVoice =
                 <ListVoiceChannel
                     listOfGuilds={listOfGuilds}
                     server={server}
                     handlePlayMusic={(server) => this.handlePlayMusic(server)}
-                    closeUserList = {() => this.setState({server:null})}
+                    closeUserList={() => this.setState({ server: null })}
                 />
         }
-        for(let i = 0; i< listOfGuilds.length; i++){
+        for (let i = 0; i < listOfGuilds.length; i++) {
             listServer.push(listOfGuilds[i].server)
         }
         return (
             <Fragment>
                 <Row>
-                <ListServer
-                    listServer={listServer}
-                    server={server}
-                    chooseServer = {(server) => this.setState({server})}
-                />
-                {listOfVoice}
+                    <ListServer
+                        listServer={listServer}
+                        server={server}
+                        chooseServer={(server) => this.setState({ server })}
+                    />
+                    {listOfVoice}
                 </Row>
             </Fragment>
         )
