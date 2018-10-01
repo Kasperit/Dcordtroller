@@ -27,7 +27,10 @@ class BlacklistWords extends React.Component {
     };
 
     handleSave = () => {
-        axios.patch('https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617',{blackListWords:this.updatedBlackWords})
+        let blackListWords = {
+            blackListWords: this.updatedBlackWords.length > 0 ? this.updatedBlackWords : this.props.listOfBannedWords
+        };
+        axios.patch('https://dcordtroller-server.herokuapp.com/api/bot/asdasdsad%230617',blackListWords)
             .then(res => {
                 this.props.newListOfBannedWords(res.data.blackListWords)
                 this.setState({
