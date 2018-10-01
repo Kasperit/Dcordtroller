@@ -22,10 +22,9 @@
 .env.production.local
 
 #server
-/server/.env
-/server/.eslintrc
 /server/.gitignore
 /server/.git
+/server/node_modules
 
 npm-debug.log*
 yarn-debug.log*
