@@ -3,7 +3,7 @@ import {List,Card,Button,Icon,Col,Modal} from 'antd'
 import './ListVoiceChannel.css'
 
 
-class ListVoice extends Component {
+class ListVoiceChannel extends Component {
     /*state = {
         key: 'activePlayers',
     };
@@ -57,7 +57,7 @@ class ListVoice extends Component {
     }
 }
 
-export default ListVoice;
+export default ListVoiceChannel;
 
 /*
 tabList={this.tabList}
