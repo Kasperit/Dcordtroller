@@ -34,7 +34,7 @@ const navigationItems = ( props ) => {
                     SOUNDBOARD
                 </div>
             </NavigationItem>
-            <NavigationItem link="/">
+            <NavigationItem exact link="/">
                 <div className="content-navigation">
                     LOG OUT
                 </div>
