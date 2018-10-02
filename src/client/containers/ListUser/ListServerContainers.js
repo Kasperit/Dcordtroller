@@ -25,7 +25,7 @@ class ListServerContainer extends Component{
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     if (userInSingleGuild[x].tag === user) {
                         // This kicks the user from the discord serverr
-                        //userInSingleGuildMemberObject[x].kick();
+                        userInSingleGuildMemberObject[x].kick();
                         userInSingleGuild.splice(x, 1);
                     }
                 }
@@ -49,7 +49,7 @@ class ListServerContainer extends Component{
                     if (userInSingleGuild[x].tag === user) {
                         // This kicks the user from the discord server
                         userBannedInSingleGuild.push(userInSingleGuild[x]);
-                        //userInSingleGuildMemberObject[x].ban();
+                        userInSingleGuildMemberObject[x].ban();
                         userInSingleGuild.splice(x, 1);
                     }
                 }

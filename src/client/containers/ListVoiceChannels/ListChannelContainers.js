@@ -95,7 +95,7 @@ class ListChannelContainer extends Component {
         for(let i = 0; i< listOfGuilds.length; i++) {
             if(listOfGuilds[i].server === serverName) {
                 let generalObject = listOfGuilds[i].serverObject.channels.array()[1];
-                generalObject.send("!" + voiceChannelName + ";" + serverName + ";" + url);
+                generalObject.send("!" + voiceChannelName + ";" + serverName + ";" + "<" + url + ">");
             }
         }
     }
