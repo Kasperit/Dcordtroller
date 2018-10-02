@@ -22,6 +22,8 @@
 .env.production.local
 
 #server
+/server/.env
+/server/.eslintrc
 /server/.gitignore
 /server/.git
 /server/node_modules
