@@ -14,10 +14,6 @@ client.on('ready', () => {
         listOfGuildsFormat[i].channels.array().forEach(element => {
             if (element.type == "voice") {
                 listOfGuildVoiceChannels.push(element);
-                //console.log(client.channels.find("name","General"));
-                //element.join()
-                //.then(connection => console.log('Connected!'))
-                //.catch(console.error);
             }
         });
         listOfGuildsFormat[i].fetchBans().then(function (users) {
@@ -45,7 +41,7 @@ client.on('ready', () => {
         )
     }
 });
-//let connection = null;
+
 client.on('message', async msg => {
     if (msg.content == "testiplay") {
         msg.channel.send("!asd");
@@ -55,6 +51,7 @@ client.on('message', async msg => {
         let message = msg
         let voiceChannelString = msg.content.substring(1).split(':')[0];
         let serverNameString = msg.content.substring(1).split(':')[1];
+        msg.delete();
         for (let index = 0; index < client.guilds.array().length; index++) {
             if (client.guilds.array()[index].name == serverNameString) {
                 for (let y = 0; y < client.guilds.array()[index].channels.array().length; y++) {
@@ -77,35 +74,8 @@ client.on('message', async msg => {
                     }
                 }
             }
-
         }
-        msg.delete();
-        /*
-        const ytdl = require('ytdl-core');
-        const streamOptions = { seek: 0, volume: 1 };
-        var voiceChannel = msg.name.voiceChannel;
-        voiceChannel.join().then(connection => {
-        console.log("joined channel");
-        const stream = ytdl('https://www.youtube.com/watch?v=gOMhN-hfMtY', { filter : 'audioonly' });
-        const dispatcher = connection.playStream(stream, streamOptions);
-        dispatcher.on("end", end => {
-        console.log("left channel");
-        voiceChannel.leave();
-    });
-}).catch(err => console.log(err));
-*/
-
     }
-
-
-
-    /*
-    msg.author.send("test");
-    if (msg.author.bot) {
-        msg.author.send("test");
-        console.log(msg.author.bot);
-    }
-    */
 
     if (msg.content == "play") {
         const ytdl = require('ytdl-core');
@@ -121,7 +91,4 @@ client.on('message', async msg => {
             });
         }).catch(err => console.log(err));
     }
-    //msg.member.voiceChannel.join();
-    //console.log(msg.guild.roles.get('486781248446922762').members.map(m=>m.roles));
-    //client.channels.get("id", client.channels.get("name", "general").id).sendMessage("Testing");
 });
