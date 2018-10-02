@@ -21,7 +21,9 @@ class Login extends Component {
     return (
       <div>
         <Form onSubmit={this.handleSubmit} className="login-form">
-          <h1>DCordtroller</h1>
+          <div className='logo'>
+              <h1>Dcordtroller</h1>
+          </div>
           <FormItem className="username">
             {getFieldDecorator('userName', {
               rules: [{ required: true, message: 'Please input your username!' }],
