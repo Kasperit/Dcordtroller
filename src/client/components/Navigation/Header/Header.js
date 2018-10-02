@@ -1,6 +1,6 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import NavigationItems from './NavigationItems/NavigationItems'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Header.css'
 
 const headerBar = (props) => {
@@ -12,7 +12,7 @@ const headerBar = (props) => {
                 </NavLink>
             </div>
             <div className="nav-bar-container">
-                <NavigationItems {...props}/>
+                <NavigationItems {...props} />
             </div>
         </div>
     )

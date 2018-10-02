@@ -16,75 +16,6 @@ class ListChannelContainer extends Component {
         return !(this.state.server === nextState.server) || this.state.listOfGuilds !== nextState.listOfGuilds
     }
 
-    /*handleKickUser = (user,server) => {
-        let listOfGuilds = [...this.state.listOfGuilds];
-        for(let i = 0; i< listOfGuilds.length; i++) {
-            if(listOfGuilds[i].server === server) {
-                let userInSingleGuild = [...listOfGuilds[i].usersActive];
-                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
-                for (let x = 0; x < userInSingleGuild.length; x++) {
-                    if (userInSingleGuild[x].tag === user) {
-                        // This kicks the user from the discord serverr
-                        //userInSingleGuildMemberObject[x].kick();
-                        userInSingleGuild.splice(x, 1);
-                    }
-                }
-                listOfGuilds[i].usersActive = [...userInSingleGuild]
-            }
-        }
-        this.setState({
-            listOfGuilds:listOfGuilds
-        });
-        console.log(`Kick ${user} in server ${server}`)
-    };
-
-    handleBanUser = (user,server) => {
-        let listOfGuilds = [...this.state.listOfGuilds];
-        for(let i = 0; i< listOfGuilds.length; i++) {
-            if(listOfGuilds[i].server === server) {
-                let userInSingleGuild = [...listOfGuilds[i].usersActive];
-                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
-                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned];
-                for (let x = 0; x < userInSingleGuild.length; x++) {
-                    if (userInSingleGuild[x].tag === user) {
-                        // This kicks the user from the discord server
-                        userBannedInSingleGuild.push(userInSingleGuild[x]);
-                        //userInSingleGuildMemberObject[x].ban();
-                        userInSingleGuild.splice(x, 1);
-                    }
-                }
-                listOfGuilds[i].usersActive = [...userInSingleGuild];
-                listOfGuilds[i].usersBanned = [...userBannedInSingleGuild];
-            }
-        }
-        this.setState({
-            listOfGuilds:listOfGuilds
-        });
-        console.log(`Ban ${user} in server ${server}`)
-    };
-
-    handleUnBanUser = (user,server) => {
-        let listOfGuilds = [...this.state.listOfGuilds];
-        for(let i = 0; i< listOfGuilds.length; i++) {
-            if(listOfGuilds[i].server === server) {
-                let userInSingleGuild = [...listOfGuilds[i].usersActive];
-                let userBannedInSingleGuild = [...listOfGuilds[i].usersBanned]
-                for (let x = 0; x < userBannedInSingleGuild.length; x++) {
-                    if (userBannedInSingleGuild[x].tag === user) {
-                        listOfGuilds[i].serverObject.unban(userBannedInSingleGuild[x].id);
-                        userBannedInSingleGuild.splice(x, 1);
-                    }
-                }
-                listOfGuilds[i].usersActive = [...userInSingleGuild];
-                listOfGuilds[i].usersBanned = [...userBannedInSingleGuild];
-            }
-        }
-        this.setState({
-            listOfGuilds:listOfGuilds
-        });
-        console.log(`UnBan ${user} in server ${server}`)
-    }*/
-
     handlePlayMusic = (item) => {
         let voiceChannelName = item.item.name;      // XD
         let serverName = item.server;
@@ -92,8 +23,8 @@ class ListChannelContainer extends Component {
         console.log(url);
 
         let listOfGuilds = [...this.state.listOfGuilds];
-        for(let i = 0; i< listOfGuilds.length; i++) {
-            if(listOfGuilds[i].server === serverName) {
+        for (let i = 0; i < listOfGuilds.length; i++) {
+            if (listOfGuilds[i].server === serverName) {
                 let generalObject = listOfGuilds[i].serverObject.channels.array()[1];
                 generalObject.send("!" + voiceChannelName + ";" + serverName + ";" + "<" + url + ">");
             }

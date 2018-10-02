@@ -1,5 +1,5 @@
-import React,{Component,Fragment} from 'react'
-import {List,Card,Button,Icon,Col,Modal} from 'antd'
+import React, { Component, Fragment } from 'react'
+import { List, Card, Button, Icon, Col, Modal } from 'antd'
 import './ListUser.css'
 import ListUserActive from './ListUserActive'
 import ListUserBan from './ListUserBan'
@@ -29,21 +29,21 @@ class ListUser extends Component {
             activePlayers: <ListUserActive
                 listOfGuilds={this.props.listOfGuilds}
                 server={this.props.server}
-                handleKickUser={(item,server) => this.props.handleKickUser(item, server)}
-                handleBanUser={(item,server) => this.props.handleBanUser(item, server)}
+                handleKickUser={(item, server) => this.props.handleKickUser(item, server)}
+                handleBanUser={(item, server) => this.props.handleBanUser(item, server)}
             />,
             bannedPlayers: <ListUserBan
                 listOfGuilds={this.props.listOfGuilds}
                 server={this.props.server}
-                handleUnBanUser={(item,server) => this.props.handleUnBanUser(item, server)}
+                handleUnBanUser={(item, server) => this.props.handleUnBanUser(item, server)}
             />,
         };
         return (
             <Col span={14}>
                 <Card
                     title="Users"
-                    headStyle={{backgroundColor:'#C1BBBC',textAlign:'center'}}
-                    bodyStyle={{height: '430px', overflowY: 'scroll'}}
+                    headStyle={{ backgroundColor: '#C1BBBC', textAlign: 'center' }}
+                    bodyStyle={{ height: '430px', overflowY: 'scroll' }}
                     extra={
                         <Icon
                             type="close"

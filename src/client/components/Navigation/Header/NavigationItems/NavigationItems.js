@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem'
 import './NavigationItems.css';
 
-const navigationItems = ( props ) => {
+const navigationItems = (props) => {
     /*const menu = (
         <Menu className="account-dropdown">
             <Menu.Item>

@@ -1,7 +1,7 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import DetectBadLanguage from './BotFunction/detectBadLanguage'
-class BotFunctions extends Component{
-    constructor(props){
+class BotFunctions extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             listOfGuilds: this.props.infoFromDiscord
@@ -10,8 +10,8 @@ class BotFunctions extends Component{
 
     handleKickUserByBot = (userTag) => {
         let listOfGuilds = [...this.props.infoFromDiscord];
-        for(let i = 0; i<listOfGuilds.length; i++){
-            if(listOfGuilds[i].serverObject.id === this.props.msg.serverId) {
+        for (let i = 0; i < listOfGuilds.length; i++) {
+            if (listOfGuilds[i].serverObject.id === this.props.msg.serverId) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive]
                 let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
                 for (let j = 0; j < userInSingleGuild.length; j++) {
@@ -27,13 +27,13 @@ class BotFunctions extends Component{
         console.log(`Kick ${userTag} in server ${this.props.msg.serverId}`)
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <DetectBadLanguage
-                msg = {this.props.msg}
-                listOfGuilds = {this.props.infoFromDiscord}
-                handleKickUserByBot = {(userTag) => this.handleKickUserByBot(userTag)}
-                listOfBannedWords = {this.props.listOfBannedWords}
+                msg={this.props.msg}
+                listOfGuilds={this.props.infoFromDiscord}
+                handleKickUserByBot={(userTag) => this.handleKickUserByBot(userTag)}
+                listOfBannedWords={this.props.listOfBannedWords}
             />
         )
     }

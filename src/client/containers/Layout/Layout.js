@@ -6,7 +6,6 @@ import ListUserAndServerContainer from '../ListUser/ListUserAndServerContainers'
 import UpdateBlocker from '../UpdateBlocker';
 import ContentWeb from './Content'
 import ListVoiceChannelsContainer from '../ListVoiceChannels/ListVoiceChannelsContainers'
-import ConnectionToDiscord from '../Auth/connectionToDiscord'
 import BotConfigContainer from '../Bot/BotConfig/BotConfigContainer'
 
 class Layout extends Component {
@@ -48,20 +47,20 @@ class Layout extends Component {
                                 />
                             </ContentWeb>
                         )} />
-                        <Route key={window.location.href} path={`${this.props.match.url}/bot`} render={(props) =>  (
+                        <Route key={window.location.href} path={`${this.props.match.url}/bot`} render={(props) => (
                             <ContentWeb
                                 {...props}
                                 title="Bot Configuration"
                             >
                                 <BotConfigContainer
-                                    infoFromDiscord = {this.props.infoFromDiscord}
-                                    client = {this.props.client}
+                                    infoFromDiscord={this.props.infoFromDiscord}
+                                    client={this.props.client}
                                     newListOfBannedWords={(listOfBannedWords) => this.props.newListOfBannedWords(listOfBannedWords)}
-                                    listOfBannedWords = {this.props.listOfBannedWords}
+                                    listOfBannedWords={this.props.listOfBannedWords}
                                     {...props}
                                 />
                             </ContentWeb>
-                        )}/>
+                        )} />
                     </Switch>
                     <UpdateBlocker>
                         <FooterBar />
