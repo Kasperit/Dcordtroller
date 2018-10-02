@@ -8,9 +8,8 @@ const ListVoiceChannelActive = (props) => {
     let listOfVoiceChannelsInServer = [];
     let url;
 
-    const saveInput = () => {
-        url = 
-        console.log(url);
+    const saveInput = (input) => {
+        url = input;
     };
 
 
@@ -34,8 +33,8 @@ const ListVoiceChannelActive = (props) => {
                     <List.Item
                         actions={
                             [
-                                <Button onClick={() => props.handlePlayMusic({item,server,})}>Play Sound</Button>,
-                                <Input ref="url" placeholder="URL" onChange={() => saveInput()}/>
+                                <Button onClick={() => props.handlePlayMusic({item,server,url})}>Play Sound</Button>,
+                                <Input placeholder="URL" onChange={evt => saveInput(evt.target.value)}/>
                             ]
                         }
                     >
