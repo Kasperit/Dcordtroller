@@ -1,10 +1,10 @@
-import React,{Fragment} from 'react'
-import {List,Button,Input,Tag} from 'antd'
+import React, { Fragment } from 'react'
+import { List, Button, Input, Tag } from 'antd'
 import './ListVoiceChannel.css'
 
 const ListVoiceChannelActive = (props) => {
 
-    const {listOfGuilds, server} = props;
+    const { listOfGuilds, server } = props;
     let listOfVoiceChannelsInServer = [];
     let url;
 
@@ -24,25 +24,24 @@ const ListVoiceChannelActive = (props) => {
         }
         return (
             <Fragment>
-                <h3 style={{textAlign:'center'}}>Voice Channels</h3>
                 <List
-                locale = {{emptyText: "No voice channels in this server"}}
-                bordered
-                dataSource={listOfVoiceChannelsInServer}
-                renderItem={item => (
-                    <List.Item
-                        actions={
-                            [
-                                <Button onClick={() => props.handlePlayMusic({item,server,url})}>Play Sound</Button>,
-                                <Input placeholder="URL" onChange={evt => saveInput(evt.target.value)}/>
-                            ]
-                        }
-                    >
-                        {item.name} &nbsp;
-                        &nbsp; {item.bot ? <Tag color="blue">BOT</Tag>:null}
-                    </List.Item>
-                )}
-            />
+                    locale={{ emptyText: "No voice channels in this server" }}
+                    bordered
+                    dataSource={listOfVoiceChannelsInServer}
+                    renderItem={item => (
+                        <List.Item
+                            actions={
+                                [
+                                    <Button onClick={() => props.handlePlayMusic({ item, server, url })}>Play Sound</Button>,
+                                    <Input placeholder="URL" onChange={evt => saveInput(evt.target.value)} />
+                                ]
+                            }
+                        >
+                            {item.name} &nbsp;
+                        &nbsp; {item.bot ? <Tag color="blue">BOT</Tag> : null}
+                        </List.Item>
+                    )}
+                />
             </Fragment>
         )
     } else {
