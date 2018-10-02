@@ -49,8 +49,11 @@ client.on('message', async msg => {
 
     if (msg.author.bot && msg.content.startsWith("!")) {
         let message = msg
-        let voiceChannelString = msg.content.substring(1).split(':')[0];
-        let serverNameString = msg.content.substring(1).split(':')[1];
+        console.log(msg.content)
+        let voiceChannelString = msg.content.substring(1).split(';')[0];
+        let serverNameString = msg.content.substring(1).split(';')[1];
+        let urlString = msg.content.substring(1).split(';')[2];
+        console.log(urlString)
         msg.delete();
         for (let index = 0; index < client.guilds.array().length; index++) {
             if (client.guilds.array()[index].name == serverNameString) {
@@ -63,7 +66,7 @@ client.on('message', async msg => {
                         var voiceChannel = channelObject;
                         voiceChannel.join().then(connection => {
                             console.log("joined channel");
-                            const stream = ytdl('https://www.youtube.com/watch?v=gOMhN-hfMtY', { filter: 'audioonly' });
+                            const stream = ytdl(urlString+"", { filter: 'audioonly' });
                             const dispatcher = connection.playStream(stream, streamOptions);
                             dispatcher.on("end", end => {
                                 console.log("left channel");
