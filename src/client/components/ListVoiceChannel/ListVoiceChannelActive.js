@@ -1,11 +1,18 @@
 import React,{Fragment} from 'react'
-import {List,Button,Divider,Modal,Popover,Icon,Tag} from 'antd'
+import {List,Button,Input,Tag} from 'antd'
 import './ListVoiceChannel.css'
 
 const ListVoiceChannelActive = (props) => {
 
     const {listOfGuilds, server} = props;
     let listOfVoiceChannelsInServer = [];
+    let url;
+
+    const saveInput = () => {
+        url = 
+        console.log(url);
+    };
+
 
     if (server) {
         console.log(listOfGuilds[0].guildVoiceChannels);
@@ -27,7 +34,8 @@ const ListVoiceChannelActive = (props) => {
                     <List.Item
                         actions={
                             [
-                                <Button onClick={() => props.handlePlayMusic({item,server})}>Play Sound</Button>,
+                                <Button onClick={() => props.handlePlayMusic({item,server,})}>Play Sound</Button>,
+                                <Input ref="url" placeholder="URL" onChange={() => saveInput()}/>
                             ]
                         }
                     >

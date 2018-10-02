@@ -88,6 +88,8 @@ class ListChannelContainer extends Component {
     handlePlayMusic = (item) => {
         let voiceChannelName = item.item.name;      // XD
         let serverName = item.server;
+        let url = item.url;
+        console.log(url);
 
         let listOfGuilds = [...this.state.listOfGuilds];
         for(let i = 0; i< listOfGuilds.length; i++) {
