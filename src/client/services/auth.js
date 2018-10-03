@@ -1,8 +1,9 @@
 import { apiCall, setTokenHeader } from "./api";
+import decode from "jwt-decode";
+
 class Auth {
   constructor(domain) {
     this.domain = domain || "http://localhost:8081";
-    this.user = null;
   }
 
   authUser = (type, userData) => {
@@ -11,7 +12,7 @@ class Auth {
         .then(({ token, ...user }) => {
           this.setToken(token);
           setTokenHeader(token);
-          this.user = user;
+          console.log(user);
           return resolve(user);
         })
         .catch(err => {
@@ -34,14 +35,11 @@ class Auth {
   };
 
   logout = () => {
-    this.setState({
-      user: null
-    });
     localStorage.removeItem("token");
   };
 
   getProfile = () => {
-    return this.state.user;
+    return decode(this.getToken());
   };
 }
 
