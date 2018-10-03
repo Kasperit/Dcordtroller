@@ -1,12 +1,26 @@
+.logo {
+  position: relative;
+  text-align: center;
+  width: auto;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 1.15em;
+}
+
 .register-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 50%;
-    width: 50%;
-    margin: -15% 0 0 -25%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
 }
 
 .register-form-button {
-    width: 100%;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .register-form {
+    min-width: 500px;
+  }
 }
