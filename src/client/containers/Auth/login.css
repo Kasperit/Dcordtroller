@@ -2,9 +2,9 @@
   position: relative;
   text-align: center;
   transform: translateY(-50%);
-  width:720px;
   font-family: 'Fjalla One', sans-serif;
   font-size:1.15em;
+  width: 100%;
 }
 
 .login-form {
