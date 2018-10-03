@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import "./register.css";
+import Auth from "../../services/auth";
 
 const FormItem = Form.Item;
+const auth = new Auth("https://dcordtroller-server.herokuapp.com/");
 
-class Register extends React.Component {
+class Register extends Component {
   state = {
     confirmDirty: false
   };
@@ -14,6 +16,10 @@ class Register extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        const { username, email, password } = values;
+        const data = { username, email, password };
+        console.log(data);
+        auth.authUser("signup", data);
         this.props.history.push("/");
       }
     });
@@ -78,7 +84,7 @@ class Register extends React.Component {
             label="Username"
             className="usernameregister"
           >
-            {getFieldDecorator("userName", {
+            {getFieldDecorator("username", {
               rules: [
                 {
                   required: true,
