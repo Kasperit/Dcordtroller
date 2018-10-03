@@ -1,0 +1,48 @@
+.close-btn:hover{
+    cursor: pointer;
+}
+
+.activePlayer-tab{
+    color:blue !important;
+}
+
+.activePlayer-tab:hover,
+.activePlayer-tab:active {
+    color:blue !important;
+    font-weight: bold !important;
+}
+
+.bannedPlayer-tab{
+    color:red !important;
+}
+
+.bannedPlayer-tab:hover,
+.bannedPlayer-tab:active,
+.bannedPlayer-tab::selection {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active{
+    font-weight:bold;
+}
+
+/*Single user info*/
+
+.user-ava-img{
+    height:60px;
+    width:60px;
+}
+
+.admin-symbol{
+    height:30px;
+    width:30px;
+}
+
+.user-info-btn:hover{
+    cursor: pointer;
+}
+
+.user-info-content{
+    width: 250px;
+}

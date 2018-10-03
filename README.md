@@ -10,3 +10,5 @@
 >Note: No space before and after `=` <br>
 >SECRET_KEY is a random string by your own, eg. `adkjs324nbjsb&+jhsdbf3b_jbkjb35n5bnm35bmnb5`
 - `npm start` to run.
+
+for soundboard, go to soundboard folder and `npm install` `npm install opusscript` `npm install ytdl-core` and `node music.js`

@@ -28,6 +28,8 @@
 /server/.git
 /server/node_modules
 
+#JET IDE stuffs
+**/.idea/workspace.xml
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
