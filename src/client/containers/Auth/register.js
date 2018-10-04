@@ -4,23 +4,27 @@ import "./register.css";
 import Auth from "../../services/auth";
 
 const FormItem = Form.Item;
-const auth = new Auth("https://dcordtroller-server.herokuapp.com/");
 
 class Register extends Component {
-  state = {
-    confirmDirty: false
-  };
+  constructor() {
+    super();
+    this.auth = new Auth("https://dcordtroller-server.herokuapp.com/");
+    this.state = {
+      confirmDirty: false
+    };
+  }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         const { username, email, password } = values;
         const data = { username, email, password };
-        console.log(data);
-        auth.authUser("signup", data);
-        this.props.history.push("/");
+        this.auth
+          .authUser("signup", data)
+          .then(res => alert(res.message))
+          .then(res => this.props.history.replace("/"))
+          .catch(err => alert(err.message));
       }
     });
   };

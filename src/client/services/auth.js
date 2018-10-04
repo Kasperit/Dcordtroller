@@ -1,24 +1,25 @@
 import { apiCall, setTokenHeader } from "./api";
+import decode from "jwt-decode";
+
 class Auth {
   constructor(domain) {
     this.domain = domain || "http://localhost:8081";
-    this.user = null;
   }
 
   authUser = (type, userData) => {
     return new Promise((resolve, reject) => {
       return apiCall("post", `${this.domain}api/auth/${type}`, userData)
-        .then(({ token, ...user }) => {
-          this.setToken(token);
-          setTokenHeader(token);
-          this.user = user;
-          return resolve(user);
+        .then(res => {
+          return resolve(res);
         })
         .catch(err => {
-          console.log(err.message);
-          reject();
+          return reject(err);
         });
     });
+  };
+
+  authorize = token => {
+    setTokenHeader(token);
   };
 
   loggedIn = () => {
@@ -34,14 +35,11 @@ class Auth {
   };
 
   logout = () => {
-    this.setState({
-      user: null
-    });
     localStorage.removeItem("token");
   };
 
   getProfile = () => {
-    return this.state.user;
+    return decode(this.getToken());
   };
 }
 
