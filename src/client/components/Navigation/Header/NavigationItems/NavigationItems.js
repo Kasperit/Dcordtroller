@@ -17,7 +17,6 @@ const navigationItems = props => {
             </Menu.Item>
         </Menu>
     );*/
-  console.log(props);
   return (
     <ul className="NavigationItems">
       <NavigationItem link={`${props.match.url}/servers`}>

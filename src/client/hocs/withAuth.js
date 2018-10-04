@@ -17,7 +17,6 @@ export default function withAuth(AuthComponent) {
       } else {
         try {
           const profile = this.auth.getProfile();
-          console.log(profile);
           this.setState({
             user: profile
           });

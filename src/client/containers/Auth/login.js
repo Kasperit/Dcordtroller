@@ -34,11 +34,11 @@ class Login extends Component {
     });
   };
 
-  /*  componentWillMount() {
+  componentWillMount() {
     if (this.auth.loggedIn()) {
       this.props.history.replace("/main");
     }
-  }*/
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;

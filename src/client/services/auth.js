@@ -10,7 +10,6 @@ class Auth {
     return new Promise((resolve, reject) => {
       return apiCall("post", `${this.domain}api/auth/${type}`, userData)
         .then(res => {
-          console.log(res);
           return resolve(res);
         })
         .catch(err => {
