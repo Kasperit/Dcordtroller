@@ -1,0 +1,39 @@
+.logo{
+  position: relative;
+  text-align: center;
+  transform: translateY(-50%);
+  font-family: 'Fjalla One', sans-serif;
+  font-size:1.15em;
+  width: 100%;
+}
+
+.login-form {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    width: 50%;
+    margin: -15% 0 0 -25%;
+}
+
+.login-form-button {
+  width: 60%;
+  margin-left: 20%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.username, .password, .register, .botinvite {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.botinvite {
+  padding-top: 5px;
+}
+
+body {
+  background-image: url("clouds.jpg")
+}
