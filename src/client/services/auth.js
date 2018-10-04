@@ -16,7 +16,6 @@ class Auth {
           return resolve(user);
         })
         .catch(err => {
-          console.log(err.message);
           return reject(err);
         });
     });

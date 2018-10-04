@@ -18,13 +18,11 @@ class Register extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         const { username, email, password } = values;
         const data = { username, email, password };
-        console.log(data);
         this.auth
           .authUser("signup", data)
-          .then(alert("Register successfully!\nGo to login!"))
+          .then(res => alert(res.message))
           .then(res => this.props.history.replace("/"))
           .catch(err => alert(err.message));
       }
