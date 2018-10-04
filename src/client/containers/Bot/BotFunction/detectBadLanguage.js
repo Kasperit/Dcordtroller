@@ -40,9 +40,11 @@ class detectBadLanguage extends Component {
         let listOfBannedWordsClone = [...listOfBannedWords]
         if (msg) {
             for (let i = 0; i < listOfGuilds.length; i++) {
-                for (let j = 0; j < listOfGuilds[i].serverAdmins.length; j++) {
-                    if (msg.userMsg.tag === listOfGuilds[i].serverAdmins[j].tag) {
-                        return null
+                if(listOfGuilds[i].serverObject.id === msg.serverId) {
+                    for (let j = 0; j < listOfGuilds[i].serverAdmins.length; j++) {
+                        if (msg.userMsg.tag === listOfGuilds[i].serverAdmins[j].tag) {
+                            return null
+                        }
                     }
                 }
             }
