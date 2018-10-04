@@ -14,6 +14,11 @@ class BotFunctions extends Component {
             if (listOfGuilds[i].serverObject.id === this.props.msg.serverId) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive]
                 let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
+                for (let k = 0; k < userInSingleGuildMemberObject.length; k++) {
+                    if (userInSingleGuildMemberObject[k].user.tag === userTag) {
+                        userInSingleGuildMemberObject[k].kick();
+                    }
+                }
                 for (let j = 0; j < userInSingleGuild.length; j++) {
                     if (userInSingleGuild[j].tag === userTag) {
                         userInSingleGuildMemberObject[j].kick();
