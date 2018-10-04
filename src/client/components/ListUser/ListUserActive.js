@@ -63,7 +63,7 @@ const ListUserActive = (props) => {
                 />
                 <Divider/>
                 <h3 style={{textAlign:'center'}}>Users</h3>
-                <Button onClick={() => {props.handleKickMultipleUsers()}}>Kick multiple users</Button>
+                <Button onClick={() => {props.handleKickMultipleUsers()}}>Kick selected users</Button>
                 <List
                 locale = {{emptyText: "No user in this server"}}
                 bordered
