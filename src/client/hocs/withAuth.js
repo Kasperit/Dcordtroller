@@ -35,6 +35,7 @@ export default function withAuth(AuthComponent) {
             {...this.props}
             history={this.props.history}
             user={this.state.user}
+            handleLogout={() => this.auth.logout()}
           />
         );
       } else {
