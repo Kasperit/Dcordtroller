@@ -1,3 +1,19 @@
+# For running the front-end
+
+Use these commands before running for the first.
+
+- `npm install`
+- `npm install axios`
+- `npm install antd --save`
+- `npm start` to run.
+
+For Soundboard, go to soundboard folder and use these commands:
+
+- `npm install`
+- `npm install opusscript`
+- `npm install ytdl-core`
+- `node music.js`
+
 # For running the server
 
 - Go to `/server`: `cd server`
@@ -9,6 +25,4 @@
  ```
 >Note: No space before and after `=` <br>
 >SECRET_KEY is a random string by your own, eg. `adkjs324nbjsb&+jhsdbf3b_jbkjb35n5bnm35bmnb5`
-- `npm start` to run.
-
-for soundboard, go to soundboard folder and `npm install` `npm install opusscript` `npm install ytdl-core` and `node music.js`
+- `node index.js` to run.
