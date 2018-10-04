@@ -35,7 +35,6 @@ class ListUser extends Component {
 
     handleSelect = (user,server,e) => {
         let listOfUserSelected = [...this.state.listOfUserSelected];
-        console.log(e.target.checked)
         if(e.target.checked){
             listOfUserSelected.push(user)
         } else {
