@@ -1,10 +1,11 @@
 # For running the front-end
 
-Use these commands before running for the first.
+Use these commands before running for the first time.
 
 - `npm install`
 - `npm install axios`
 - `npm install antd --save`
+- `npm install jwt-decode`
 - `npm start` to run.
 
 For Soundboard, go to soundboard folder and use these commands:
