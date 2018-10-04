@@ -1,5 +1,5 @@
 import React,{Fragment} from 'react'
-import {List,Button,Divider,Modal,Popover,Icon,Tag} from 'antd'
+import {List,Button,Divider,Modal,Popover,Icon,Tag,Checkbox} from 'antd'
 import './ListUser.css'
 import SingleUserInfo from './SingleUserInfo'
 
@@ -63,6 +63,7 @@ const ListUserActive = (props) => {
                 />
                 <Divider/>
                 <h3 style={{textAlign:'center'}}>Users</h3>
+                <Button onClick={() => {props.handleKickMultipleUsers()}}>Kick multiple users</Button>
                 <List
                 locale = {{emptyText: "No user in this server"}}
                 bordered
@@ -72,7 +73,10 @@ const ListUserActive = (props) => {
                         actions={
                             [
                                 <Button onClick={() => showConfirm(item.tag, server, "kick")}>Kick</Button>,
-                                <Button onClick={() => showConfirm(item.tag, server)}>Ban</Button>
+                                <Button onClick={() => showConfirm(item.tag, server)}>Ban</Button>,
+                                props.uncheckedAll
+                                    ? <Checkbox checked={false} />
+                                    : <Checkbox onChange={(event) => props.handleSelect(item.tag,server,event)}/>,
                             ]
                         }
                     >
@@ -89,6 +93,7 @@ const ListUserActive = (props) => {
                     </List.Item>
                 )}
             />
+                {props.uncheckedAll? props.trick(): null}
             </Fragment>
         )
     } else {
