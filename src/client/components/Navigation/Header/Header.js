@@ -6,7 +6,7 @@ import './Header.css'
 const headerBar = (props) => {
     return (
         <div className={'header'}>
-            <div className='logo'>
+            <div className='logo-main'>
                 <NavLink to="/main">
                     <h1>Dcordtroller</h1>
                 </NavLink>
