@@ -8,7 +8,7 @@ class ListServerContainer extends Component{
         super(props);
         this.state = {
             server:null,
-            listOfGuilds: this.props.listOfGuilds
+            listOfGuilds: this.props.listOfGuilds,
         }
     }
 
@@ -83,7 +83,39 @@ class ListServerContainer extends Component{
             listOfGuilds:listOfGuilds
         });
         console.log(`UnBan ${user} in server ${server}`)
-    }
+    };
+
+    handleKickMultipleUsers = (userList,server) => {
+        let listOfGuilds = [...this.state.listOfGuilds];
+        for(let i = 0; i< listOfGuilds.length; i++) {
+            if(listOfGuilds[i].server === server) {
+                let userInSingleGuild = [...listOfGuilds[i].usersActive];
+                let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
+                for (let x = 0; x < userInSingleGuildMemberObject.length; x++) {
+                    for(let y = 0; y < userList.length; y ++) {
+                        if (userInSingleGuildMemberObject[x].user.tag === userList[y]) {
+                            // This kicks the user from the discord serverr
+                            userInSingleGuildMemberObject[x].kick();
+                            console.log(userInSingleGuildMemberObject[x])
+                        }
+                    }
+                }
+                for (let x = 0; x < userInSingleGuild.length; x++) {
+                    for(let y = 0; y < userList.length; y ++) {
+                        if (userInSingleGuild[x].tag === userList[y]) {
+                            userInSingleGuild.splice(x, 1);
+                        }
+                    }
+                }
+                listOfGuilds[i].usersActive = [...userInSingleGuild]
+            }
+        }
+        this.setState({
+            listOfGuilds:listOfGuilds
+        });
+    };
+
+
 
 
     render(){
@@ -99,6 +131,7 @@ class ListServerContainer extends Component{
                     handleBanUser={(user, server) => this.handleBanUser(user, server)}
                     closeUserList = {() => this.setState({server:null})}
                     handleUnBanUser = {(user,server) => this.handleUnBanUser(user,server)}
+                    handleKickMultipleUsers = {(userList,server) => this.handleKickMultipleUsers(userList,server)}
                 />
         }
         for(let i = 0; i< listOfGuilds.length; i++){
