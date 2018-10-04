@@ -9,16 +9,18 @@ class Auth {
   authUser = (type, userData) => {
     return new Promise((resolve, reject) => {
       return apiCall("post", `${this.domain}api/auth/${type}`, userData)
-        .then(({ token, ...user }) => {
-          this.setToken(token);
-          setTokenHeader(token);
-          console.log(user);
-          return resolve(user);
+        .then(res => {
+          console.log(res);
+          return resolve(res);
         })
         .catch(err => {
           return reject(err);
         });
     });
+  };
+
+  authorize = token => {
+    setTokenHeader(token);
   };
 
   loggedIn = () => {

@@ -24,6 +24,10 @@ class Login extends Component {
       if (!err) {
         this.auth
           .authUser("signin", values)
+          .then(res => {
+            this.auth.setToken(res.token);
+            this.auth.authorize(res.token);
+          })
           .then(res => this.props.history.replace("/main"))
           .catch(err => alert(err.message));
       }
