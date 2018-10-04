@@ -91,14 +91,19 @@ class ListServerContainer extends Component{
             if(listOfGuilds[i].server === server) {
                 let userInSingleGuild = [...listOfGuilds[i].usersActive];
                 let userInSingleGuildMemberObject = [...listOfGuilds[i].memberObjects];
+                for (let x = 0; x < userInSingleGuildMemberObject.length; x++) {
+                    for(let y = 0; y < userList.length; y ++) {
+                        if (userInSingleGuildMemberObject[x].user.tag === userList[y]) {
+                            // This kicks the user from the discord serverr
+                            userInSingleGuildMemberObject[x].kick();
+                            console.log(userInSingleGuildMemberObject[x])
+                        }
+                    }
+                }
                 for (let x = 0; x < userInSingleGuild.length; x++) {
                     for(let y = 0; y < userList.length; y ++) {
                         if (userInSingleGuild[x].tag === userList[y]) {
                             userInSingleGuild.splice(x, 1);
-                        }
-                        if (userInSingleGuildMemberObject[x].user.tag === userList[y]) {
-                            // This kicks the user from the discord serverr
-                            userInSingleGuildMemberObject[x].kick();
                         }
                     }
                 }
