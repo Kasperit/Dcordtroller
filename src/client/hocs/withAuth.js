@@ -5,7 +5,7 @@ export default function withAuth(AuthComponent) {
   return class Authenticate extends Component {
     constructor() {
       super();
-      this.auth = new Auth("https://dcordtroller-server.herokuapp.com/");
+      this.auth = new Auth();
       this.state = {
         user: null
       };
