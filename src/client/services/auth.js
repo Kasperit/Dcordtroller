@@ -3,7 +3,7 @@ import decode from "jwt-decode";
 
 class Auth {
   constructor(domain) {
-    this.domain = domain || "http://localhost:8081";
+    this.domain = domain || "http://localhost:8081/";
   }
 
   authUser = (type, userData) => {

@@ -28,6 +28,9 @@ const navigationItems = props => {
       <NavigationItem link={`${props.match.url}/soundboard`}>
         <div className="content-navigation">SOUNDBOARD</div>
       </NavigationItem>
+      <NavigationItem link={`${props.match.url}/user`}>
+        <div className="content-navigation">PROFILE</div>
+      </NavigationItem>
       <NavigationItem exact link="/">
         <div
           className="content-navigation"

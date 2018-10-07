@@ -1,32 +1,36 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-mongoose.set('useCreateIndex', true);
+mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
-  discordTag: {
-    type: String,
-    required: false,
-  },
+  discord: {
+    access_token: {
+      type: String
+    },
+    refresh_token: {
+      type: String
+    }
+  }
 });
 
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function(next) {
   try {
-    if (!this.isModified('password')) {
+    if (!this.isModified("password")) {
       return next();
     }
     const hashedPassword = await bcrypt.hash(this.password, 10);
@@ -37,7 +41,7 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-userSchema.methods.comparePassword = async function (candidatePassword, next) {
+userSchema.methods.comparePassword = async function(candidatePassword, next) {
   try {
     const isMatch = await bcrypt.compare(candidatePassword, this.password);
     return isMatch;
@@ -46,6 +50,6 @@ userSchema.methods.comparePassword = async function (candidatePassword, next) {
   }
 };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

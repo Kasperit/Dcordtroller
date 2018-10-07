@@ -33,8 +33,14 @@ exports.connect = async function(req, res, next) {
       }
     });
 
-    return res.status(200).json(user.data);
+    return res.status(200).json(response.data);
   } catch (err) {
     return next(err);
   }
 };
+
+/*router.get("/login", (req, res) => {
+  res.redirect(
+    `https://discordapp.com/oauth2/authorize?client_id=${CLIENT_ID}&scope=identify&response_type=code&redirect_uri=${redirect}`
+  );
+});*/
