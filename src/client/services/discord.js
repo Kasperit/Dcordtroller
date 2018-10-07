@@ -1,4 +1,4 @@
-import apiCall from "./api";
+import { apiCall } from "./api";
 
 class Discord {
   constructor(domain) {
