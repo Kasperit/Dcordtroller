@@ -27,8 +27,13 @@ exports.connect = async function(req, res, next) {
       }
     };
     const response = await axios.post(url, null, config);
+    const user = await axios.get("http://discordapp.com/api/users/@me", {
+      headers: {
+        Authorization: `Bearer ${response.data.access_token}`
+      }
+    });
 
-    return res.status(200).json(response.data);
+    return res.status(200).json(user.data);
   } catch (err) {
     return next(err);
   }
