@@ -22,20 +22,18 @@ class Profile extends Component {
     const code = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     }).code;
-    console.log(code);
     if (code) {
       this.discord
         .connect(
           this.props.user.username,
           code
         )
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .then(res => console.log(res.message))
+        .catch(err => console.log(err.message));
     }
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <p style={{ fontSize: "1.2em", fontWeight: "bold" }}>

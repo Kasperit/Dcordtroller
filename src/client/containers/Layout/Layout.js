@@ -14,7 +14,6 @@ class Layout extends Component {
     return this.props.location.pathname !== nextProps.location.pathname;
   }
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="App">

@@ -1,8 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const { connect } = require("../handlers/discord");
+const { connect, getDiscord } = require("../handlers/discord");
 
-router.get("/connect", connect);
+router.post("/:username", connect);
+router.get("/:username", getDiscord);
 
 module.exports = router;
