@@ -18,19 +18,42 @@ class Profile extends Component {
       "https://discordapp.com/oauth2/authorize?client_id=493788991380783106&response_type=code&scope=identify%20email%20guilds&redirect_uri=http://localhost:3000/main/user";
   };
 
-  componentDidMount() {
+  getProfile = async () => {
+    await this.discord
+      .getProfile(this.props.user.username)
+      .then(res =>
+        this.setState({
+          discordConnect: true,
+          discordAccount: res
+        })
+      )
+      .then(res => console.log(this.state))
+      .catch(err => console.log(err.message));
+  };
+
+  connect = async () => {
     const code = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     }).code;
-    if (code) {
-      this.discord
+    if (code && !this.state.discordConnect) {
+      await this.discord
         .connect(
           this.props.user.username,
           code
         )
         .then(res => console.log(res.message))
+        .then(res => this.getProfile())
         .catch(err => console.log(err.message));
     }
+  };
+
+  load = async () => {
+    await this.getProfile();
+    await this.connect();
+  };
+
+  componentWillMount() {
+    this.load();
   }
 
   render() {
@@ -42,9 +65,11 @@ class Profile extends Component {
         <p style={{ fontSize: "1.2em", fontWeight: "bold" }}>
           Email: {this.props.user.email}
         </p>
-        <Button onClick={() => this.handleClick()}>
-          Connect to your Discord account!
-        </Button>
+        {!this.state.discordConnect && (
+          <Button onClick={() => this.handleClick()}>
+            Connect to your Discord account!
+          </Button>
+        )}
       </div>
     );
   }

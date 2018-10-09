@@ -16,6 +16,18 @@ class Discord {
         });
     });
   };
+
+  getProfile = username => {
+    return new Promise((resolve, reject) => {
+      return apiCall("get", `${this.domain}api/discord/${username}`, null)
+        .then(res => {
+          return resolve(res);
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    });
+  };
 }
 
 export default Discord;
