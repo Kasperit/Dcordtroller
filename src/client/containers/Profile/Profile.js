@@ -10,7 +10,7 @@ const { Meta } = Card;
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.discord = new Discord();
+    this.discord = new Discord("https://dcordtroller-server.herokuapp.com/");
     this.state = {
       discordConnect: false,
       discordAccount: null,

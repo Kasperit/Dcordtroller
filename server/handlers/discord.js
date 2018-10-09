@@ -2,14 +2,9 @@ const axios = require("axios");
 const btoa = require("btoa");
 const db = require("../models");
 
-const CLIENT_ID = process.env.CLIENT_ID || "493788991380783106";
-const CLIENT_SECRET =
-  process.env.CLIENT_SECRET || "Dg_LwDyFgwjNY5QUc-GobCwkIIUmKmin";
-const redirect = encodeURIComponent(
-  /*"https://dcordtroller-server.herokuapp.com/api/discord/connect"*/
-  /*"http://localhost:8081/api/discord/connect"*/
-  "http://localhost:3000/main/user"
-);
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const redirect = encodeURIComponent("http://localhost:3000/main/user");
 
 exports.connect = async function(req, res, next) {
   try {
