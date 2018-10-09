@@ -44,17 +44,21 @@ class Login extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
+        <div className="black-background" />
+        <div className="login-logo">
+          <h1>Dcordtroller</h1>
+        </div>
         <Form onSubmit={this.handleSubmit} className="login-form">
-          <div className="logo">
-            <h1>Dcordtroller</h1>
-          </div>
-          <FormItem className="username">
+          <h1 className="welcome">Welcome back!</h1>
+          <FormItem className="login-field">
+            <h5 className="login-field-name">USERNAME</h5>
             {getFieldDecorator("username", {
               rules: [
                 { required: true, message: "Please input your username!" }
               ]
             })(
               <Input
+                className="login-input"
                 prefix={
                   <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
@@ -63,13 +67,15 @@ class Login extends Component {
               />
             )}
           </FormItem>
-          <FormItem className="password">
+          <FormItem className="login-field">
+            <h5 className="login-field-name">PASSWORD</h5>
             {getFieldDecorator("password", {
               rules: [
-                { required: true, message: "Please input your Password!" }
+                { required: true, message: "Please input your password!" }
               ]
             })(
               <Input
+                className="login-input"
                 prefix={
                   <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
@@ -79,30 +85,32 @@ class Login extends Component {
               />
             )}
           </FormItem>
-          <FormItem>
+          <FormItem className="login-btn">
             <Button
               type="primary"
               htmlType="submit"
               className="login-form-button"
             >
-              Log in
+              Login
             </Button>
           </FormItem>
           <div className="register">
-            <Link to="/register">Register</Link>
-          </div>
-          <div className="botinvite">
-            <a
-              target="_blank"
-              href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8"
-            >
-              Invite Bot
-            </a>
+            Need an account?{" "}
+            <Link className="login-link" to="/register">
+              Register
+            </Link>
           </div>
         </Form>
       </div>
     );
   }
 }
-
+/*<div className="botinvite">
+  <a
+    target="_blank"
+    href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8"
+  >
+    Invite Bot
+  </a>
+</div>*/
 export default Form.create()(Login);
