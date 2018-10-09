@@ -92,3 +92,20 @@ exports.getDiscord = async function(req, res, next) {
     });
   }
 };
+
+exports.disconnect = async function(req, res, next) {
+  try {
+    const user = await db.User.findOne({
+      username: req.params.username
+    });
+    user.discord.access_token = undefined;
+    user.discord.refresh_token = undefined;
+    user.save();
+    return res.status(200).json({ message: "Disconnected!" });
+  } catch (err) {
+    return next({
+      status: 400,
+      message: err.message
+    });
+  }
+};

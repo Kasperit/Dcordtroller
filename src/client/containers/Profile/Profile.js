@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import * as qs from "query-string";
 import Discord from "../../services/discord";
+
+const confirm = Modal.confirm;
 
 class Profile extends Component {
   constructor(props) {
@@ -14,12 +16,35 @@ class Profile extends Component {
     };
   }
 
+  showConfirm = () => {
+    const handleDisconnect = () => this.handleDisconnect();
+    confirm({
+      title: "Do you want to disconnect with your Discord account?",
+      content: "You can connect back later",
+      onOk() {
+        handleDisconnect();
+      },
+      onCancel() {}
+    });
+  };
+
   handleConnect = () => {
     window.location =
       "https://discordapp.com/oauth2/authorize?client_id=493788991380783106&response_type=code&scope=identify%20email%20guilds&redirect_uri=http://localhost:3000/main/user";
   };
 
-  handleDisconnect = () => {};
+  handleDisconnect = () => {
+    this.discord
+      .disconnect(this.props.user.username)
+      .then(res => {
+        console.log(res.message);
+        this.setState({
+          discordConnect: false,
+          discordAccount: null
+        });
+      })
+      .catch(err => console.log(err.message));
+  };
 
   getProfile = async () => {
     await this.discord
@@ -87,7 +112,7 @@ class Profile extends Component {
           </Button>
         )}
         {this.state.discordConnect && (
-          <Button onClick={() => this.handleDisconnect()}>
+          <Button onClick={() => this.showConfirm()}>
             Disconnect your Discord account!
           </Button>
         )}
