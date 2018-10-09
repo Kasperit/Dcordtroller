@@ -73,7 +73,12 @@ exports.getDiscord = async function(req, res, next) {
         "http://discordapp.com/api/users/@me",
         config
       );
-      return res.status(200).json(userDiscord.data);
+      const guilds = await axios
+        .get("http://discordapp.com/api/users/@me/guilds", config)
+        .then(res => {
+          return res.data;
+        });
+      return res.status(200).json({ ...userDiscord.data, guilds });
     } else {
       return next({
         status: 400,

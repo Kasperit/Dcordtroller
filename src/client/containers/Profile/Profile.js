@@ -9,14 +9,17 @@ class Profile extends Component {
     this.discord = new Discord();
     this.state = {
       discordConnect: false,
-      discordAccount: null
+      discordAccount: null,
+      load: false
     };
   }
 
-  handleClick = () => {
+  handleConnect = () => {
     window.location =
       "https://discordapp.com/oauth2/authorize?client_id=493788991380783106&response_type=code&scope=identify%20email%20guilds&redirect_uri=http://localhost:3000/main/user";
   };
+
+  handleDisconnect = () => {};
 
   getProfile = async () => {
     await this.discord
@@ -50,6 +53,7 @@ class Profile extends Component {
   load = async () => {
     await this.getProfile();
     await this.connect();
+    this.setState({ load: true });
   };
 
   componentWillMount() {
@@ -57,6 +61,18 @@ class Profile extends Component {
   }
 
   render() {
+    if (!this.state.load)
+      return (
+        <div className="lds-css ng-scope">
+          <div
+            style={{ width: "100%", height: "100%" }}
+            className="lds-double-ring"
+          >
+            <div />
+            <div />
+          </div>
+        </div>
+      );
     return (
       <div>
         <p style={{ fontSize: "1.2em", fontWeight: "bold" }}>
@@ -66,8 +82,13 @@ class Profile extends Component {
           Email: {this.props.user.email}
         </p>
         {!this.state.discordConnect && (
-          <Button onClick={() => this.handleClick()}>
+          <Button onClick={() => this.handleConnect()}>
             Connect to your Discord account!
+          </Button>
+        )}
+        {this.state.discordConnect && (
+          <Button onClick={() => this.handleDisconnect()}>
+            Disconnect your Discord account!
           </Button>
         )}
       </div>
