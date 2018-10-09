@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, Card, Avatar } from "antd";
 import * as qs from "query-string";
 import Discord from "../../services/discord";
+import "./Profile.css";
 
-const confirm = Modal.confirm;
+const { confirm } = Modal;
+const { Meta } = Card;
 
 class Profile extends Component {
   constructor(props) {
@@ -112,9 +114,47 @@ class Profile extends Component {
           </Button>
         )}
         {this.state.discordConnect && (
-          <Button onClick={() => this.showConfirm()}>
-            Disconnect your Discord account!
-          </Button>
+          <div>
+            <Card className="dc-card">
+              <Button
+                className="dc-card-btn"
+                onClick={() => this.showConfirm()}
+              >
+                Disconnect
+              </Button>
+              <Meta
+                avatar={
+                  <Avatar
+                    className="dc-card-avatar"
+                    src={
+                      this.state.discordAccount.avatar
+                        ? `https://cdn.discordapp.com/avatars/${
+                            this.state.discordAccount.id
+                          }/${this.state.discordAccount.avatar}.png?size=128`
+                        : `https://cdn.discordapp.com/embed/avatars/${this.state
+                            .discordAccount.discriminator % 5}.png`
+                    }
+                  />
+                }
+                description={
+                  <div>
+                    <h5 className="dc-card-title">USERNAME</h5>
+                    <h3 className="dc-card-username">
+                      {`${this.state.discordAccount.username}#${
+                        this.state.discordAccount.discriminator
+                      }`}
+                    </h3>
+                    <h5 className="dc-card-title">JOINED SERVERS</h5>
+                    <ul className="dc-card-list">
+                      {this.state.discordAccount.guilds.map((guide, i) => (
+                        <li key={i}>{guide.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                }
+              />
+            </Card>
+          </div>
         )}
       </div>
     );
