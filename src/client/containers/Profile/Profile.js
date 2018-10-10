@@ -102,19 +102,39 @@ class Profile extends Component {
       );
     return (
       <div>
-        <p style={{ fontSize: "1.2em", fontWeight: "bold" }}>
-          Username: {this.props.user.username}
-        </p>
-        <p style={{ fontSize: "1.2em", fontWeight: "bold" }}>
-          Email: {this.props.user.email}
-        </p>
+        <div>
+          <Card className="dc-card">
+            <Meta
+              avatar={
+                <Avatar
+                  className="dc-card-avatar"
+                  src="https://cdn.discordapp.com/embed/avatars/0.png"
+                />
+              }
+              description={
+                <div>
+                  <h5 className="dc-card-title">USERNAME</h5>
+                  <h3 className="dc-card-username">
+                    {this.props.user.username}
+                  </h3>
+                  <h5 className="dc-card-title">EMAIL</h5>
+                  <p className="dc-card-list">{this.props.user.email}</p>
+                </div>
+              }
+            />
+          </Card>
+        </div>
         {!this.state.discordConnect && (
-          <Button className="dc-card-btn" onClick={() => this.handleConnect()}>
+          <Button
+            className="dc-card-btn dc-connect-btn"
+            onClick={() => this.handleConnect()}
+          >
             Connect to your Discord account!
           </Button>
         )}
         {this.state.discordConnect && (
           <div>
+            <h3 className="dc-info">Your Dicord account</h3>
             <Card className="dc-card">
               <Button
                 className="dc-card-btn dc-disconnect-btn"
