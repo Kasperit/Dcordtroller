@@ -109,7 +109,7 @@ class Profile extends Component {
           Email: {this.props.user.email}
         </p>
         {!this.state.discordConnect && (
-          <Button onClick={() => this.handleConnect()}>
+          <Button className="dc-card-btn" onClick={() => this.handleConnect()}>
             Connect to your Discord account!
           </Button>
         )}
@@ -117,7 +117,7 @@ class Profile extends Component {
           <div>
             <Card className="dc-card">
               <Button
-                className="dc-card-btn"
+                className="dc-card-btn dc-disconnect-btn"
                 onClick={() => this.showConfirm()}
               >
                 Disconnect

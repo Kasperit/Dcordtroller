@@ -33,7 +33,6 @@
 
 .dc-card-btn {
   position: relative;
-  float: right;
   background-color: #7289da;
   border: none;
   color: white;
@@ -44,4 +43,9 @@
 .dc-card-btn:hover {
   background-color: #677bc4;
   color: white;
+}
+
+.dc-disconnect-btn {
+  position: relative;
+  float: right;
 }
