@@ -8,6 +8,7 @@
   margin: 5px auto;
   display: grid;
   grid-gap: 5px;
+  grid-template-rows: 140px auto 42px;
   grid-template-areas:
     "header"
     "content"
@@ -16,7 +17,25 @@
 
 .content {
   grid-area: content;
-  padding: 2em;
+  margin: 5px auto;
+  padding: 0 20px;
+  width: 100%;
+  color: white;
+}
+
+.content h2 {
+  color: white;
+}
+
+.content-server {
+  height: 92%;
+  background-color: #2f3136;
+  position: relative;
+}
+
+.content-server-col24 {
+  height: 100%;
+  position: absolute;
 }
 
 .header {
@@ -46,6 +65,10 @@
 }
 
 @media (min-width: 992px) {
+  .App {
+    grid-template-rows: 75px auto 42px;
+  }
+
   .header {
     display: flex;
     flex-direction: row;
@@ -53,6 +76,10 @@
     padding: 15px 0;
     text-align: center;
     height: 76px;
+  }
+
+  .content {
+    max-width: 1050px;
   }
 }
 
