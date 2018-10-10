@@ -48,4 +48,13 @@
 .dc-disconnect-btn {
   position: relative;
   float: right;
+  width: 100px;
+}
+
+.dc-invite-btn {
+  position: absolute;
+  right: 24px;
+  top: 70px;
+  display: block;
+  width: 100px;
 }

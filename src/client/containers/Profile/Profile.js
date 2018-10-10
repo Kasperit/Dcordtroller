@@ -122,6 +122,14 @@ class Profile extends Component {
               >
                 Disconnect
               </Button>
+              <Button className="dc-card-btn dc-invite-btn">
+                <a
+                  target="_blank"
+                  href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8"
+                >
+                  Invite Bot
+                </a>
+              </Button>
               <Meta
                 avatar={
                   <Avatar

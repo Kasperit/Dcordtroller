@@ -105,12 +105,5 @@ class Login extends Component {
     );
   }
 }
-/*<div className="botinvite">
-  <a
-    target="_blank"
-    href="https://discordapp.com/oauth2/authorize?client_id=486483177624305674&scope=bot&permissions=8"
-  >
-    Invite Bot
-  </a>
-</div>*/
+
 export default Form.create()(Login);
